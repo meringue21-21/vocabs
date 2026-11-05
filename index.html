@@ -37,7 +37,8 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-text-size-adjust:100%}
-body{min-height:100%}
+body{min-height:100%;font-size:15px}
+.toggle button,.seg button{font-size:14px}
 button,input,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--sea);outline-offset:2px}
@@ -46,13 +47,13 @@ h1,h2,h3,p{margin:0}
 h1,h2,h3{text-wrap:balance}
 .disp{font-family:var(--font-display);font-weight:400}
 .muted{color:var(--muted)}
-.small{font-size:13px}
+.small{font-size:12px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px}
 .row{display:flex;align-items:center;gap:10px}
 .between{justify-content:space-between}
 .grow{flex:1;min-width:0}
 .col{display:flex;flex-direction:column;gap:10px}
-.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:13px 16px;font-weight:700;font-size:15px;min-height:48px}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:13px 16px;font-weight:700;font-size:14px;min-height:48px}
 .btn.primary{background:var(--sea);border-color:var(--sea);color:#fff}
 :root[data-theme="dark"] .btn.primary{color:#06182B}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#06182B}}
@@ -99,39 +100,53 @@ h1,h2,h3{text-wrap:balance}
 .big{font-family:var(--font-display);font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}
 
 /* word card */
-.wcard{padding:22px 18px;display:flex;flex-direction:column;gap:14px;min-height:340px}
-.word{font-family:var(--font-latin);font-weight:700;font-size:38px;line-height:1.1;overflow-wrap:anywhere}
-.ipa{font-family:var(--font-latin);color:var(--sea);font-size:18px}
-.mean{font-size:22px;font-weight:700}
-.ex{font-family:var(--font-latin);font-size:16px;line-height:1.6;padding:12px 14px;border-left:4px solid var(--sea);background:var(--sea-soft);border-radius:0 12px 12px 0}
+.wcard{padding:18px 16px;height:50vh;height:50dvh;min-height:0;overflow:hidden}
+.wfit{display:flex;flex-direction:column;gap:12px;transform-origin:top left}
+.word{font-family:var(--font-latin);font-weight:700;font-size:32px;line-height:1.1;overflow-wrap:anywhere}
+.ipa{font-family:var(--font-latin);color:var(--sea);font-size:15px}
+.mean{font-size:18px;font-weight:700}
+.mean2{font-size:16px;font-weight:700}
+.mean2 b{font-weight:500;color:var(--muted);margin-right:4px}
+.ex{font-family:var(--font-latin);font-size:14px;line-height:1.55;padding:12px 14px;border-left:4px solid var(--sea);background:var(--sea-soft);border-radius:0 12px 12px 0}
 .ex mark{background:none;color:var(--sea);font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.df{font-family:var(--font-latin);font-size:15px;line-height:1.55;padding:10px 12px;border-left:4px solid var(--coral);background:color-mix(in srgb,var(--coral) 10%,transparent);border-radius:0 12px 12px 0}
+.df{font-family:var(--font-latin);font-size:14px;line-height:1.5;padding:10px 12px;border-left:4px solid var(--coral);background:color-mix(in srgb,var(--coral) 10%,transparent);border-radius:0 12px 12px 0}
 .df mark{background:none;color:var(--coral);font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.veil{filter:blur(9px);user-select:none;cursor:pointer}
+.veil{filter:blur(9px);user-select:none;-webkit-user-select:none}
+.veil.unveil{filter:none}
+#app.holdmode,#app.holdmode *{touch-action:none}
+#app.fit{padding-bottom:calc(16px + env(safe-area-inset-bottom));transform-origin:top center}
+
+.act .btn{min-height:56px;font-size:16px}
+.hold,.hold *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .tap-hint{font-size:13px;color:var(--muted)}
 .star{color:var(--muted)} .star.on{color:var(--gold);border-color:var(--gold)}
 
 /* quiz */
 .q{display:flex;flex-direction:column;gap:14px}
 .qprompt{font-size:14px;color:var(--muted);font-weight:700}
-.qmain{font-family:var(--font-latin);font-size:30px;font-weight:700;line-height:1.25;overflow-wrap:anywhere}
-.qmain.ko{font-family:var(--font-body);font-size:26px}
-.qmain.sent{font-size:19px;font-weight:500;line-height:1.7}
+.qmain{font-family:var(--font-latin);font-size:25px;font-weight:700;line-height:1.25;overflow-wrap:anywhere}
+.qmain.ko{font-family:var(--font-body);font-size:22px}
+.qmain.sent{font-size:16px;font-weight:500;line-height:1.7}
 .blank{display:inline-block;min-width:92px;border-bottom:3px solid var(--sea);margin:0 4px;vertical-align:baseline}
 .opts{display:flex;flex-direction:column;gap:10px}
-.opt{text-align:left;border:2px solid var(--line);background:var(--surface);border-radius:14px;padding:14px;font-size:16px;font-weight:500;display:flex;gap:12px;align-items:center;min-height:56px}
+.opt{text-align:left;border:2px solid var(--line);background:var(--surface);border-radius:14px;padding:12px 14px;font-size:14px;font-weight:500;display:flex;gap:12px;align-items:center;min-height:56px}
 .opt b{width:28px;height:28px;border-radius:50%;background:var(--sea-soft);color:var(--sea);display:grid;place-items:center;font-size:13px;flex:none}
 .opt.right{border-color:var(--ok);background:var(--ok-soft)}
 .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
 .opt[disabled]{cursor:default}
-.inp{width:100%;border:2px solid var(--line);background:var(--surface);border-radius:14px;padding:14px;font-size:20px;font-family:var(--font-latin)}
+.inp{width:100%;border:2px solid var(--line);background:var(--surface);border-radius:14px;padding:12px 14px;font-size:17px;font-family:var(--font-latin)}
 .inp:focus{border-color:var(--sea);outline:none}
 .inp.right{border-color:var(--ok);background:var(--ok-soft)}
 .inp.wrong{border-color:var(--bad);background:var(--bad-soft)}
 .fb{border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
 .fb.ok{background:var(--ok-soft);border:1px solid var(--ok)}
 .fb.bad{background:var(--bad-soft);border:1px solid var(--bad)}
-.fb .v{font-weight:700;font-size:17px}
+.fb .v{font-weight:700;font-size:15px}
+.warn.bad{color:#9b2222;background:#fde4e4}
+@media (prefers-color-scheme: dark){.warn.bad{color:#ffb3b3;background:#3d1a1a}}
+.warn{font-size:13px;font-weight:700;color:#a35a00;background:#fff3d6;border-radius:10px;padding:6px 10px}
+@media (prefers-color-scheme: dark){.warn{color:#ffd48a;background:#3d2e10}}
 .fb.ok .v{color:var(--ok)} .fb.bad .v{color:var(--bad)}
 .hintline{min-height:20px;color:var(--muted);font-size:14px;font-family:var(--font-latin);letter-spacing:.08em}
 
@@ -150,7 +165,7 @@ details{border-top:1px solid var(--line);padding:2px 0}
 details:first-child{border-top:0}
 summary{list-style:none;display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 0;cursor:pointer;min-height:48px}
 summary::-webkit-details-marker{display:none}
-summary b{font-family:var(--font-latin);font-size:17px}
+summary b{font-family:var(--font-latin);font-size:15px}
 .dbody{display:flex;flex-direction:column;gap:8px;padding:0 0 14px}
 .seg{display:grid;grid-template-columns:1fr 1fr;background:var(--sea-soft);border-radius:14px;padding:4px;gap:4px}
 .seg button{border:0;background:none;border-radius:10px;padding:10px;font-weight:700;color:var(--muted);min-height:44px}
@@ -219,8 +234,8 @@ input[type=date]{border:2px solid var(--line);background:var(--surface);border-r
 
 <script>
 /* ===================== DATA ===================== */
-const CATS={read:'독해 어휘',ling:'영어학 용어',edu:'영어교육 용어',phr:'숙어·구동사',lit:'영미문학 용어',my:'내 단어'};
-const CAT_DEFAULT=['read','ling','edu'];
+const CATS={read:'독해 어휘',litv:'문학 작품 어휘',ling:'영어학 용어',edu:'영어교육 용어',phr:'숙어·구동사',lit:'영미문학 용어',my:'내 단어'};
+const CAT_DEFAULT=['read','litv','ling','edu'];
 const D=(cat,rows)=>rows.map(r=>({w:r[0],ipa:r[1],pos:r[2],ko:r[3],ex:r[4],cat}));
 const WORDS=[].concat(
 D('read',[
@@ -868,6 +883,409 @@ WORDS.push(...D('phr',[
 ["rule of thumb","/ˌruːl əv ˈθʌm/","idiom","경험칙","As a {rule of thumb}, review within 24 hours."]
 ]));
 
+WORDS.push(...D('phr',[
+["account for", "/əˈkaʊnt fɔːr/", "phr. v.", "설명하다, 차지하다", "Students {account for} half of the audience."],
+["abide by", "/əˈbaɪd baɪ/", "phr. v.", "(규칙을) 따르다", "We must {abide by} the rules."],
+["amount to", "/əˈmaʊnt tuː/", "phr. v.", "결국 ~이 되다", "His words {amount to} a threat."],
+["back out", "/ˌbæk ˈaʊt/", "phr. v.", "(약속에서) 발을 빼다", "He {backed out} of the deal."],
+["bear out", "/ˌber ˈaʊt/", "phr. v.", "입증하다", "The data {bear out} the claim."],
+["blow over", "/ˌbloʊ ˈoʊvər/", "phr. v.", "(사건이) 가라앉다", "The scandal will {blow over}."],
+["boil down to", "/ˌbɔɪl ˈdaʊn tuː/", "phr. v.", "결국 ~로 귀결되다", "It {boils down to} money."],
+["brush up on", "/ˌbrʌʃ ˈʌp ɑːn/", "phr. v.", "복습하다", "I need to {brush up on} my English."],
+["call for", "/ˈkɔːl fɔːr/", "phr. v.", "요구하다", "The crisis {calls for} action."],
+["carry over", "/ˌkæri ˈoʊvər/", "phr. v.", "이월하다", "Unused days {carry over}."],
+["chip in", "/ˌtʃɪp ˈɪn/", "phr. v.", "돈을 보태다", "We all {chipped in} for the gift."],
+["clamp down on", "/ˌklæmp ˈdaʊn ɑːn/", "phr. v.", "단속하다", "Police {clamped down on} speeding."],
+["come about", "/ˌkʌm əˈbaʊt/", "phr. v.", "일어나다", "How did this {come about}?"],
+["come by", "/ˌkʌm ˈbaɪ/", "phr. v.", "구하다", "Good jobs are hard to {come by}."],
+["come through", "/ˌkʌm ˈθruː/", "phr. v.", "이겨내다, 해내다", "She {came through} the crisis."],
+["comply with", "/kəmˈplaɪ wɪð/", "phr. v.", "준수하다", "You must {comply with} the law."],
+["cut back on", "/ˌkʌt ˈbæk ɑːn/", "phr. v.", "줄이다", "We should {cut back on} sugar."],
+["dawn on", "/ˈdɔːn ɑːn/", "phr. v.", "문득 깨닫다", "It {dawned on} me that I was late."],
+["die down", "/ˌdaɪ ˈdaʊn/", "phr. v.", "잦아들다", "The noise {died down}."],
+["dwell on", "/ˈdwel ɑːn/", "phr. v.", "곱씹다", "Don't {dwell on} the past."],
+["fall through", "/ˌfɔːl ˈθruː/", "phr. v.", "무산되다", "The deal {fell through}."],
+["fend off", "/ˌfend ˈɔːf/", "phr. v.", "막아내다", "He {fended off} the attack."],
+["get by", "/ˌɡet ˈbaɪ/", "phr. v.", "그럭저럭 살아가다", "They {get by} on little money."],
+["give in", "/ˌɡɪv ˈɪn/", "phr. v.", "굴복하다", "He finally {gave in}."],
+["give off", "/ˌɡɪv ˈɔːf/", "phr. v.", "(냄새·빛 등을) 내뿜다", "Flowers {give off} a sweet scent."],
+["go off", "/ˌɡoʊ ˈɔːf/", "phr. v.", "울리다, 터지다", "The alarm {went off}."],
+["hold out", "/ˌhoʊld ˈaʊt/", "phr. v.", "버티다", "They {held out} for weeks."],
+["hold up", "/ˌhoʊld ˈʌp/", "phr. v.", "지연시키다", "Traffic {held us up}."],
+["iron out", "/ˌaɪərn ˈaʊt/", "phr. v.", "해결하다", "They {ironed out} the problems."],
+["lay off", "/ˌleɪ ˈɔːf/", "phr. v.", "해고하다", "The firm {laid off} workers."],
+["leave out", "/ˌliːv ˈaʊt/", "phr. v.", "빼다", "Don't {leave out} the date."],
+["look down on", "/ˌlʊk ˈdaʊn ɑːn/", "phr. v.", "얕보다", "Don't {look down on} others."],
+["make for", "/ˈmeɪk fɔːr/", "phr. v.", "~로 향하다, 기여하다", "Good habits {make for} success."],
+["mess up", "/ˌmes ˈʌp/", "phr. v.", "망치다", "He {messed up} the test."],
+["opt for", "/ˈɑːpt fɔːr/", "phr. v.", "~을 택하다", "They {opted for} the cheaper plan."],
+["pass away", "/ˌpæs əˈweɪ/", "phr. v.", "세상을 떠나다", "His uncle {passed away}."],
+["pay off", "/ˌpeɪ ˈɔːf/", "phr. v.", "성과를 내다", "Hard work {pays off}."],
+["phase out", "/ˈfeɪz aʊt/", "phr. v.", "단계적으로 폐지하다", "They {phased out} old models."],
+["play along", "/ˌpleɪ əˈlɔːŋ/", "phr. v.", "장단을 맞추다", "He {played along} with the joke."],
+["pull off", "/ˌpʊl ˈɔːf/", "phr. v.", "해내다", "She {pulled off} a big win."],
+["put across", "/ˌpʊt əˈkrɔːs/", "phr. v.", "이해시키다", "He {put across} his ideas."],
+["put forward", "/ˌpʊt ˈfɔːrwərd/", "phr. v.", "제안하다", "They {put forward} a plan."],
+["put out", "/ˌpʊt ˈaʊt/", "phr. v.", "(불을) 끄다", "Firemen {put out} the fire."],
+["reckon with", "/ˈrekən wɪð/", "phr. v.", "~을 고려하다", "They had to {reckon with} her."],
+["rely on", "/rɪˈlaɪ ɑːn/", "phr. v.", "의존하다", "We {rely on} you."],
+["run over", "/ˌrʌn ˈoʊvər/", "phr. v.", "(차가) 치다", "A car {ran over} the dog."],
+["see off", "/ˌsiː ˈɔːf/", "phr. v.", "배웅하다", "They {saw off} their friend."],
+["set about", "/ˌset əˈbaʊt/", "phr. v.", "착수하다", "She {set about} the work."],
+["set off", "/ˌset ˈɔːf/", "phr. v.", "출발하다, 촉발하다", "They {set off} early."],
+["shake off", "/ˌʃeɪk ˈɔːf/", "phr. v.", "떨쳐 내다", "He {shook off} a cold."],
+["slip up", "/ˌslɪp ˈʌp/", "phr. v.", "실수하다", "I {slipped up} on the date."],
+["stand by", "/ˈstænd baɪ/", "phr. v.", "지지하다", "She {stood by} him."],
+["stem from", "/ˈstem frʌm/", "phr. v.", "~에서 비롯되다", "Trouble {stems from} greed."],
+["step up", "/ˌstep ˈʌp/", "phr. v.", "강화하다", "They {stepped up} security."],
+["take down", "/ˌteɪk ˈdaʊn/", "phr. v.", "받아 적다", "He {took down} her address."],
+["tell apart", "/ˌtel əˈpɑːrt/", "phr. v.", "구별하다", "I can't {tell} them {apart}."],
+["tide over", "/ˌtaɪd ˈoʊvər/", "phr. v.", "(어려움을) 넘기게 하다", "The loan {tided} us {over}."],
+["touch on", "/ˈtʌtʃ ɑːn/", "phr. v.", "언급하다", "The talk {touched on} climate."],
+["wear off", "/ˌwer ˈɔːf/", "phr. v.", "서서히 사라지다", "The pain {wore off}."],
+["write off", "/ˌraɪt ˈɔːf/", "phr. v.", "손실 처리하다", "They {wrote off} the debt."],
+["at large", "/æt ˈlɑːrdʒ/", "idiom", "잡히지 않은, 일반적인", "The thief is still {at large}."],
+["at odds with", "/æt ˈɑːdz wɪð/", "idiom", "~와 사이가 나쁜", "He is {at odds with} his boss."],
+["by dint of", "/baɪ ˈdɪnt ɑːv/", "idiom", "~의 힘으로", "He won {by dint of} effort."],
+["by no means", "/baɪ ˈnoʊ miːnz/", "idiom", "결코 ~이 아닌", "It is {by no means} easy."],
+["for the time being", "/fər ðə ˈtaɪm biːɪŋ/", "idiom", "당분간", "Stay here {for the time being}."],
+["in a nutshell", "/ɪn ə ˈnʌtʃel/", "idiom", "간단히 말해", "{In a nutshell}, we lost."],
+["in vain", "/ɪn ˈveɪn/", "idiom", "헛되이", "They tried {in vain}."],
+["in the face of", "/ɪn ðə ˈfeɪs ɑːv/", "idiom", "~에 직면하여", "She stayed calm {in the face of} danger."],
+["in the wake of", "/ɪn ðə ˈweɪk ɑːv/", "idiom", "~의 여파로", "Prices rose {in the wake of} the storm."],
+["no sooner than", "/noʊ ˈsuːnər ðæn/", "idiom", "~하자마자", "{No sooner} had he left {than} it rained."],
+["on the spur of the moment", "/ɑːn ðə ˈspɜːr ɑːv ðə ˈmoʊmənt/", "idiom", "충동적으로", "He bought it {on the spur of the moment}."],
+["out of the question", "/aʊt ɑːv ðə ˈkwestʃən/", "idiom", "불가능한", "A refund is {out of the question}."],
+["to say the least", "/tuː ˈseɪ ðə ˈliːst/", "idiom", "줄여 말해도", "It was odd, {to say the least}."],
+["turn a blind eye to", "/tɜːrn ə ˈblaɪnd aɪ tuː/", "idiom", "눈감아 주다", "Officials {turned a blind eye to} it."],
+["up in the air", "/ʌp ɪn ði ˈer/", "idiom", "미정인", "Our plans are {up in the air}."],
+["without further ado", "/wɪðˈaʊt ˈfɜːrðər əˈduː/", "idiom", "지체 없이", "{Without further ado}, let's begin."],
+["allow for", "/əˈlaʊ fɔːr/", "phr. v.", "~을 고려하다", "{Allow for} traffic delays."],
+["dispose of", "/dɪˈspoʊz ɑːv/", "phr. v.", "처분하다", "{Dispose of} waste properly."],
+["keep off", "/ˌkiːp ˈɔːf/", "phr. v.", "가까이 가지 않다", "{Keep off} the grass."],
+["stand up for", "/ˌstænd ˈʌp fɔːr/", "phr. v.", "옹호하다", "{Stand up for} your rights."],
+["turn in", "/ˌtɜːrn ˈɪn/", "phr. v.", "제출하다", "{Turn in} your essay."]
+]));
+
+WORDS.push(...D('read',[
+["abridge", "/əˈbrɪdʒ/", "v.", "요약하다, 축약하다", "The editor {abridged} the long novel."],
+["abstruse", "/æbˈstruːs/", "adj.", "난해한", "The lecture was too {abstruse} to follow."],
+["accentuate", "/ækˈsentʃueɪt/", "v.", "강조하다", "The dress {accentuates} her height."],
+["adept", "/əˈdept/", "adj.", "능숙한", "She is {adept} at solving puzzles."],
+["affable", "/ˈæfəbl/", "adj.", "상냥한", "He is an {affable} host."],
+["affiliate", "/əˈfɪlieɪt/", "v.", "제휴하다, 가입시키다", "The clinic is {affiliated} with the university."],
+["alleviate", "/əˈliːvieɪt/", "v.", "완화하다", "Medicine can {alleviate} the pain."],
+["amalgamate", "/əˈmælɡəmeɪt/", "v.", "합병하다", "The two banks decided to {amalgamate}."],
+["ambiguous", "/æmˈbɪɡjuəs/", "adj.", "모호한", "The contract language was {ambiguous}."],
+["amenable", "/əˈmiːnəbl/", "adj.", "순응하는", "She was {amenable} to suggestions."],
+["animate", "/ˈænɪmeɪt/", "v.", "생기를 불어넣다", "Music {animated} the party."],
+["annex", "/əˈneks/", "v.", "병합하다", "The country {annexed} the border region."],
+["annul", "/əˈnʌl/", "v.", "무효화하다", "The court {annulled} the marriage."],
+["antagonize", "/ænˈtæɡənaɪz/", "v.", "적대감을 불러일으키다", "Do not {antagonize} the neighbors."],
+["apprehend", "/ˌæprɪˈhend/", "v.", "체포하다, 이해하다", "Police {apprehended} the suspect."],
+["arbitrate", "/ˈɑːrbɪtreɪt/", "v.", "중재하다", "A neutral party will {arbitrate} the dispute."],
+["ardent", "/ˈɑːrdnt/", "adj.", "열렬한", "He is an {ardent} supporter of the team."],
+["assail", "/əˈseɪl/", "v.", "공격하다, 괴롭히다", "Doubts {assailed} him."],
+["auspicious", "/ɔːˈspɪʃəs/", "adj.", "상서로운", "It was an {auspicious} start to the year."],
+["authorize", "/ˈɔːθəraɪz/", "v.", "승인하다", "The manager must {authorize} the payment."],
+["backlash", "/ˈbæklæʃ/", "n.", "반발", "The tax caused a public {backlash}."],
+["bankrupt", "/ˈbæŋkrʌpt/", "adj.", "파산한", "The firm went {bankrupt}."],
+["barrage", "/bəˈrɑːʒ/", "n.", "연발, 쇄도", "She faced a {barrage} of questions."],
+["befall", "/bɪˈfɔːl/", "v.", "(나쁜 일이) 닥치다", "Misfortune {befell} the family."],
+["benign", "/bɪˈnaɪn/", "adj.", "양성의, 상냥한", "The tumor was {benign}."],
+["besiege", "/bɪˈsiːdʒ/", "v.", "포위하다, 쇄도하다", "Fans {besieged} the singer."],
+["blatant", "/ˈbleɪtnt/", "adj.", "노골적인", "It was a {blatant} lie."],
+["brandish", "/ˈbrændɪʃ/", "v.", "휘두르다", "He {brandished} a stick."],
+["brink", "/brɪŋk/", "n.", "벼랑 끝, 직전", "The firm was on the {brink} of collapse."],
+["burgeon", "/ˈbɜːrdʒən/", "v.", "급성장하다", "The city's economy began to {burgeon}."],
+["cardinal", "/ˈkɑːrdɪnl/", "adj.", "기본적인, 가장 중요한", "Honesty is a {cardinal} virtue."],
+["censor", "/ˈsensər/", "v.", "검열하다", "The government {censored} the news."],
+["clemency", "/ˈklemənsi/", "n.", "관대함, 자비", "The prisoner begged for {clemency}."],
+["colloquial", "/kəˈloʊkwiəl/", "adj.", "구어체의", "'Gonna' is a {colloquial} form."],
+["commemorate", "/kəˈmeməreɪt/", "v.", "기념하다", "We {commemorate} the end of the war."],
+["complicit", "/kəmˈplɪsɪt/", "adj.", "공모한", "He was {complicit} in the fraud."],
+["concur", "/kənˈkɜːr/", "v.", "의견이 일치하다", "The two experts {concur} on the cause."],
+["confiscate", "/ˈkɑːnfɪskeɪt/", "v.", "압수하다", "The teacher {confiscated} the phone."],
+["congenial", "/kənˈdʒiːniəl/", "adj.", "마음에 맞는", "They had a {congenial} chat."],
+["consecutive", "/kənˈsekjətɪv/", "adj.", "연속적인", "It rained for three {consecutive} days."],
+["consolation", "/ˌkɑːnsəˈleɪʃn/", "n.", "위로", "Her letter was a great {consolation}."],
+["contemptuous", "/kənˈtemptʃuəs/", "adj.", "경멸하는", "She gave a {contemptuous} glance."],
+["contingency", "/kənˈtɪndʒənsi/", "n.", "만일의 사태", "Prepare a plan for every {contingency}."],
+["cordon", "/ˈkɔːrdn/", "v.", "출입을 통제하다", "Police {cordoned} off the area."],
+["corpulent", "/ˈkɔːrpjələnt/", "adj.", "뚱뚱한", "The {corpulent} man sat heavily."],
+["countenance", "/ˈkaʊntənəns/", "n.", "표정, 용인", "He kept a calm {countenance}."],
+["covet", "/ˈkʌvət/", "v.", "탐내다", "She {coveted} her neighbor's garden."],
+["decadence", "/ˈdekədəns/", "n.", "타락, 퇴폐", "The empire fell into {decadence}."],
+["deft", "/deft/", "adj.", "능숙한, 솜씨 좋은", "She made a {deft} move."],
+["deplorable", "/dɪˈplɔːrəbl/", "adj.", "한탄스러운", "The slums were in {deplorable} condition."],
+["deprecate", "/ˈdeprəkeɪt/", "v.", "비난하다, 깎아내리다", "He {deprecated} his own success."],
+["derelict", "/ˈderəlɪkt/", "adj.", "버려진, 직무를 태만히 한", "They lived in a {derelict} house."],
+["despondent", "/dɪˈspɑːndənt/", "adj.", "낙담한", "He grew {despondent} after the loss."],
+["detrimental", "/ˌdetrɪˈmentl/", "adj.", "해로운", "Smoking is {detrimental} to health."],
+["devout", "/dɪˈvaʊt/", "adj.", "독실한", "She is a {devout} believer."],
+["dexterous", "/ˈdekstrəs/", "adj.", "손재주 있는", "The {dexterous} surgeon worked quickly."],
+["dilapidated", "/dɪˈlæpɪdeɪtɪd/", "adj.", "낡아빠진", "The {dilapidated} barn leaned to one side."],
+["dire", "/ˈdaɪər/", "adj.", "끔찍한, 긴박한", "The family was in {dire} need."],
+["disdain", "/dɪsˈdeɪn/", "n.", "경멸", "He looked at them with {disdain}."],
+["dispatch", "/dɪˈspætʃ/", "v.", "급파하다", "The army {dispatched} troops."],
+["dissuade", "/dɪˈsweɪd/", "v.", "단념시키다", "She tried to {dissuade} him from going."],
+["distraught", "/dɪˈstrɔːt/", "adj.", "몹시 괴로워하는", "The {distraught} mother searched for her son."],
+["diversify", "/dɪˈvɜːrsɪfaɪ/", "v.", "다양화하다", "The firm {diversified} its products."],
+["dogma", "/ˈdɔːɡmə/", "n.", "교리, 독단", "He rejected the party's {dogma}."],
+["dwindle", "/ˈdwɪndl/", "v.", "줄어들다", "Hopes {dwindled} day by day."],
+["eloquence", "/ˈeləkwəns/", "n.", "웅변, 달변", "Her {eloquence} moved the crowd."],
+["elude", "/ɪˈluːd/", "v.", "피하다, 이해되지 않다", "The answer {eluded} him."],
+["emancipate", "/ɪˈmænsɪpeɪt/", "v.", "해방시키다", "Laws {emancipated} the slaves."],
+["embezzle", "/ɪmˈbezl/", "v.", "횡령하다", "He {embezzled} funds from the firm."],
+["empower", "/ɪmˈpaʊər/", "v.", "권한을 주다", "Education {empowers} women."],
+["encroach", "/ɪnˈkroʊtʃ/", "v.", "침해하다", "Farms {encroach} on the forest."],
+["enigmatic", "/ˌenɪɡˈmætɪk/", "adj.", "수수께끼 같은", "She gave an {enigmatic} smile."],
+["entail", "/ɪnˈteɪl/", "v.", "수반하다", "The job {entails} long hours."],
+["envisage", "/ɪnˈvɪzɪdʒ/", "v.", "상상하다, 전망하다", "No one {envisaged} such a result."],
+["equanimity", "/ˌiːkwəˈnɪməti/", "n.", "평정심", "He faced danger with {equanimity}."],
+["espouse", "/ɪˈspaʊz/", "v.", "(주의를) 지지하다", "She {espoused} the cause of reform."],
+["exalt", "/ɪɡˈzɔːlt/", "v.", "높이 찬양하다", "The poem {exalts} the hero."],
+["exasperate", "/ɪɡˈzæspəreɪt/", "v.", "몹시 짜증나게 하다", "His delay {exasperated} her."],
+["excavate", "/ˈekskəveɪt/", "v.", "발굴하다", "They {excavated} an ancient tomb."],
+["exhilarating", "/ɪɡˈzɪləreɪtɪŋ/", "adj.", "아주 신나는", "The ride was {exhilarating}."],
+["expatriate", "/eksˈpeɪtriət/", "n.", "국외 거주자", "Many {expatriates} live in Seoul."],
+["extol", "/ɪkˈstoʊl/", "v.", "극찬하다", "They {extolled} her courage."],
+["extort", "/ɪkˈstɔːrt/", "v.", "갈취하다", "He {extorted} money from shops."],
+["exuberant", "/ɪɡˈzuːbərənt/", "adj.", "활기 넘치는", "The {exuberant} crowd cheered."],
+["fallacious", "/fəˈleɪʃəs/", "adj.", "그릇된", "The argument is {fallacious}."],
+["feign", "/feɪn/", "v.", "~인 척하다", "He {feigned} illness."],
+["felicitous", "/fəˈlɪsɪtəs/", "adj.", "적절한", "It was a {felicitous} choice of words."],
+["ferocious", "/fəˈroʊʃəs/", "adj.", "사나운", "A {ferocious} dog guarded the gate."],
+["fickle", "/ˈfɪkl/", "adj.", "변덕스러운", "The {fickle} weather ruined the picnic."],
+["flagrant", "/ˈfleɪɡrənt/", "adj.", "노골적인", "It was a {flagrant} violation."],
+["flamboyant", "/flæmˈbɔɪənt/", "adj.", "화려한", "He wore a {flamboyant} coat."],
+["forbearance", "/fɔːrˈberəns/", "n.", "인내, 관용", "She showed great {forbearance}."],
+["forgo", "/fɔːrˈɡoʊ/", "v.", "포기하다", "He {forwent} dessert."],
+["forsake", "/fɔːrˈseɪk/", "v.", "저버리다", "He would never {forsake} his friends."],
+["fortitude", "/ˈfɔːrtɪtuːd/", "n.", "불굴의 용기", "She bore the pain with {fortitude}."],
+["frivolous", "/ˈfrɪvələs/", "adj.", "경박한", "It was a {frivolous} lawsuit."],
+["gamut", "/ˈɡæmət/", "n.", "전 범위", "The film runs the {gamut} of emotions."],
+["gaudy", "/ˈɡɔːdi/", "adj.", "야한, 번지르르한", "She wore {gaudy} jewelry."],
+["grudge", "/ɡrʌdʒ/", "n.", "원한", "She bears a {grudge} against him."],
+["hapless", "/ˈhæpləs/", "adj.", "불운한", "The {hapless} traveler lost his bag."],
+["haughty", "/ˈhɔːti/", "adj.", "거만한", "She gave a {haughty} reply."],
+["havoc", "/ˈhævək/", "n.", "대혼란", "The storm wreaked {havoc}."],
+["hereditary", "/həˈredɪteri/", "adj.", "유전의, 세습의", "It is a {hereditary} disease."],
+["hone", "/hoʊn/", "v.", "갈고닦다", "She {honed} her skills."],
+["idyllic", "/aɪˈdɪlɪk/", "adj.", "목가적인", "They spent an {idyllic} summer."],
+["impeach", "/ɪmˈpiːtʃ/", "v.", "탄핵하다", "Lawmakers voted to {impeach} him."],
+["impede", "/ɪmˈpiːd/", "v.", "방해하다", "Fallen trees {impeded} traffic."],
+["impending", "/ɪmˈpendɪŋ/", "adj.", "임박한", "They feared the {impending} crisis."],
+["imperil", "/ɪmˈperəl/", "v.", "위태롭게 하다", "Pollution {imperils} marine life."],
+["impetuous", "/ɪmˈpetʃuəs/", "adj.", "성급한", "The {impetuous} youth rushed in."],
+["implore", "/ɪmˈplɔːr/", "v.", "애원하다", "She {implored} him to stay."],
+["impromptu", "/ɪmˈprɑːmptuː/", "adj.", "즉흥적인", "He gave an {impromptu} speech."],
+["inaugurate", "/ɪˈnɔːɡjəreɪt/", "v.", "취임시키다, 개시하다", "The president was {inaugurated} in January."],
+["incarcerate", "/ɪnˈkɑːrsəreɪt/", "v.", "투옥하다", "The thief was {incarcerated}."],
+["inclement", "/ɪnˈklemənt/", "adj.", "(날씨가) 궂은", "They stayed in due to {inclement} weather."],
+["incumbent", "/ɪnˈkʌmbənt/", "n.", "현직자", "The {incumbent} won again."],
+["indict", "/ɪnˈdaɪt/", "v.", "기소하다", "He was {indicted} for fraud."],
+["inevitable", "/ɪnˈevɪtəbl/", "adj.", "불가피한", "Change is {inevitable}."],
+["iniquity", "/ɪˈnɪkwəti/", "n.", "부정, 사악함", "The preacher condemned {iniquity}."],
+["insatiable", "/ɪnˈseɪʃəbl/", "adj.", "만족을 모르는", "He has an {insatiable} curiosity."],
+["insolvent", "/ɪnˈsɑːlvənt/", "adj.", "지불 불능의", "The firm became {insolvent}."],
+["insurgent", "/ɪnˈsɜːrdʒənt/", "n.", "반란군", "{Insurgents} seized the town."],
+["interim", "/ˈɪntərɪm/", "adj.", "임시의", "An {interim} manager took over."],
+["intrepid", "/ɪnˈtrepɪd/", "adj.", "대담한", "The {intrepid} explorer crossed the desert."],
+["irk", "/ɜːrk/", "v.", "짜증나게 하다", "His habits {irk} me."],
+["irrevocable", "/ɪˈrevəkəbl/", "adj.", "취소할 수 없는", "It was an {irrevocable} decision."],
+["jubilant", "/ˈdʒuːbɪlənt/", "adj.", "기뻐 날뛰는", "Fans were {jubilant}."],
+["languish", "/ˈlæŋɡwɪʃ/", "v.", "시들다, 오래 고통받다", "He {languished} in prison."],
+["levy", "/ˈlevi/", "v.", "(세금을) 부과하다", "The state {levied} a new tax."],
+["liaison", "/liˈeɪzɑːn/", "n.", "연락, 연락 담당자", "She acts as a {liaison} between teams."],
+["lull", "/lʌl/", "v.", "진정시키다", "The music {lulled} the baby."],
+["maladroit", "/ˌmæləˈdrɔɪt/", "adj.", "서투른", "His {maladroit} remark caused offense."],
+["malevolent", "/məˈlevələnt/", "adj.", "악의적인", "She gave a {malevolent} stare."],
+["malign", "/məˈlaɪn/", "v.", "중상하다", "He was {maligned} by the press."],
+["meddle", "/ˈmedl/", "v.", "간섭하다", "Do not {meddle} in their affairs."],
+["melancholy", "/ˈmelənkɑːli/", "n.", "우울", "A deep {melancholy} settled on him."],
+["militant", "/ˈmɪlɪtənt/", "adj.", "투쟁적인", "A {militant} group staged a protest."],
+["misnomer", "/ˌmɪsˈnoʊmər/", "n.", "잘못된 명칭", "'Fast food' can be a {misnomer}."],
+["mortify", "/ˈmɔːrtɪfaɪ/", "v.", "몹시 창피하게 하다", "She was {mortified} by the mistake."],
+["muster", "/ˈmʌstər/", "v.", "모으다, 불러일으키다", "He {mustered} his courage."],
+["negligent", "/ˈneɡlɪdʒənt/", "adj.", "태만한", "The driver was {negligent}."],
+["oblivion", "/əˈblɪviən/", "n.", "망각", "The band faded into {oblivion}."],
+["obliterate", "/əˈblɪtəreɪt/", "v.", "완전히 없애다", "The storm {obliterated} the village."],
+["omnipotent", "/ɑːmˈnɪpətənt/", "adj.", "전능한", "They worship an {omnipotent} god."],
+["opulent", "/ˈɑːpjələnt/", "adj.", "호화로운", "They lived in an {opulent} villa."],
+["pacify", "/ˈpæsɪfaɪ/", "v.", "달래다", "She {pacified} the baby."],
+["pariah", "/pəˈraɪə/", "n.", "따돌림받는 사람", "He became a social {pariah}."],
+["perennial", "/pəˈreniəl/", "adj.", "영속적인, 다년생의", "Traffic is a {perennial} problem."],
+["peril", "/ˈperəl/", "n.", "위험", "They ignored the {peril}."],
+["perpetrate", "/ˈpɜːrpətreɪt/", "v.", "(범죄를) 저지르다", "He {perpetrated} the fraud."],
+["perpetual", "/pərˈpetʃuəl/", "adj.", "영구적인", "They lived in {perpetual} fear."],
+["placate", "/ˈpleɪkeɪt/", "v.", "달래다", "He tried to {placate} the crowd."],
+["plausible", "/ˈplɔːzəbl/", "adj.", "그럴듯한", "It is a {plausible} explanation."],
+["ponderous", "/ˈpɑːndərəs/", "adj.", "둔중한, 지루한", "His style is {ponderous}."],
+["pragmatism", "/ˈpræɡmətɪzəm/", "n.", "실용주의", "Her {pragmatism} saved the project."],
+["precocious", "/prɪˈkoʊʃəs/", "adj.", "조숙한", "The {precocious} child read at three."],
+["predicament", "/prɪˈdɪkəmənt/", "n.", "곤경", "He was in a {predicament}."],
+["preposterous", "/prɪˈpɑːstərəs/", "adj.", "터무니없는", "It is a {preposterous} idea."],
+["prerogative", "/prɪˈrɑːɡətɪv/", "n.", "특권", "It is the boss's {prerogative}."],
+["procrastinate", "/proʊˈkræstɪneɪt/", "v.", "미루다", "Do not {procrastinate}."],
+["prodigious", "/prəˈdɪdʒəs/", "adj.", "엄청난", "She has a {prodigious} memory."],
+["profound", "/prəˈfaʊnd/", "adj.", "깊은", "It had a {profound} effect."],
+["proliferate", "/prəˈlɪfəreɪt/", "v.", "급증하다", "Online shops {proliferated}."],
+["propaganda", "/ˌprɑːpəˈɡændə/", "n.", "선전", "The regime spread {propaganda}."],
+["prophetic", "/prəˈfetɪk/", "adj.", "예언적인", "His words proved {prophetic}."],
+["proscribe", "/proʊˈskraɪb/", "v.", "금지하다", "The law {proscribes} gambling."],
+["provisional", "/prəˈvɪʒənl/", "adj.", "임시의", "They formed a {provisional} government."],
+["prowess", "/ˈpraʊəs/", "n.", "뛰어난 기량", "He showed his {prowess} in battle."],
+["punitive", "/ˈpjuːnətɪv/", "adj.", "처벌의", "The court imposed {punitive} damages."],
+["quell", "/kwel/", "v.", "진압하다", "Police {quelled} the riot."],
+["rancid", "/ˈrænsɪd/", "adj.", "썩은 냄새가 나는", "The butter turned {rancid}."],
+["reclaim", "/rɪˈkleɪm/", "v.", "되찾다", "They {reclaimed} the land."],
+["recluse", "/ˈrekluːs/", "n.", "은둔자", "He lived as a {recluse}."],
+["redress", "/rɪˈdres/", "v.", "바로잡다, 시정하다", "The court sought to {redress} the wrong."],
+["relinquish", "/rɪˈlɪŋkwɪʃ/", "v.", "포기하다", "He {relinquished} control."],
+["relegate", "/ˈrelɪɡeɪt/", "v.", "강등시키다", "The team was {relegated}."],
+["remiss", "/rɪˈmɪs/", "adj.", "태만한", "It would be {remiss} not to thank them."],
+["repeal", "/rɪˈpiːl/", "v.", "폐지하다", "Congress {repealed} the law."],
+["reprimand", "/ˈreprɪmænd/", "v.", "질책하다", "The boss {reprimanded} him."],
+["reprieve", "/rɪˈpriːv/", "n.", "유예", "The prisoner won a {reprieve}."],
+["resent", "/rɪˈzent/", "v.", "분개하다", "She {resented} his remark."],
+["resign", "/rɪˈzaɪn/", "v.", "사임하다", "He {resigned} as manager."],
+["retrospect", "/ˈretrəspekt/", "n.", "회고", "In {retrospect}, it was a mistake."],
+["rudimentary", "/ˌruːdɪˈmentri/", "adj.", "기초적인", "He has {rudimentary} skills."],
+["ruminate", "/ˈruːmɪneɪt/", "v.", "반추하다, 곰곰이 생각하다", "She {ruminated} on the past."],
+["sanctuary", "/ˈsæŋktʃueri/", "n.", "피난처, 보호구역", "The park is a bird {sanctuary}."],
+["scrutiny", "/ˈskruːtəni/", "n.", "정밀 조사", "The deal faced public {scrutiny}."],
+["secular", "/ˈsekjələr/", "adj.", "세속적인", "It is a {secular} school."],
+["sedate", "/sɪˈdeɪt/", "adj.", "차분한", "He kept a {sedate} pace."],
+["skeptical", "/ˈskeptɪkl/", "adj.", "회의적인", "She was {skeptical} about the claim."],
+["slander", "/ˈslændər/", "n.", "중상", "He sued for {slander}."],
+["subdue", "/səbˈduː/", "v.", "진압하다, 가라앉히다", "He {subdued} his fears."],
+["subsidiary", "/səbˈsɪdieri/", "adj.", "부수적인", "It is a {subsidiary} company."],
+["suffrage", "/ˈsʌfrɪdʒ/", "n.", "참정권", "Women won {suffrage}."],
+["superfluous", "/suːˈpɜːrfluəs/", "adj.", "불필요한", "Cut the {superfluous} words."],
+["surmise", "/sərˈmaɪz/", "v.", "추측하다", "I {surmised} he was late."],
+["tangible", "/ˈtændʒəbl/", "adj.", "유형의, 확실한", "There is no {tangible} proof."],
+["tardy", "/ˈtɑːrdi/", "adj.", "늦은", "He was {tardy} for class."],
+["temperate", "/ˈtempərət/", "adj.", "온화한, 절제된", "They enjoy a {temperate} climate."],
+["tranquil", "/ˈtræŋkwɪl/", "adj.", "고요한", "It was a {tranquil} lake."],
+["tumultuous", "/tuːˈmʌltʃuəs/", "adj.", "떠들썩한", "They received a {tumultuous} welcome."],
+["unprecedented", "/ʌnˈpresɪdentɪd/", "adj.", "전례 없는", "It was an {unprecedented} event."],
+["unscrupulous", "/ʌnˈskruːpjələs/", "adj.", "비양심적인", "An {unscrupulous} dealer cheated them."],
+["vanquish", "/ˈvæŋkwɪʃ/", "v.", "정복하다", "They {vanquished} the enemy."],
+["viable", "/ˈvaɪəbl/", "adj.", "실행 가능한", "It is a {viable} option."],
+["virtuous", "/ˈvɜːrtʃuəs/", "adj.", "덕이 있는", "She led a {virtuous} life."],
+["wrath", "/ræθ/", "n.", "분노", "He feared her {wrath}."]
+]));
+
+WORDS.push(...D('litv',[
+["amber", "/ˈæmbər/", "n.", "호박색", "The {amber} light faded at dusk."],
+["apparition", "/ˌæpəˈrɪʃn/", "n.", "유령, 환영", "An {apparition} appeared on the stairs."],
+["ardor", "/ˈɑːrdər/", "n.", "열정", "He spoke with great {ardor}."],
+["august", "/ɔːˈɡʌst/", "adj.", "위엄 있는", "The {august} hall fell silent."],
+["balmy", "/ˈbɑːmi/", "adj.", "온화한", "A {balmy} breeze stirred the leaves."],
+["beckon", "/ˈbekən/", "v.", "손짓하여 부르다", "The light {beckoned} him home."],
+["bereft", "/bɪˈreft/", "adj.", "(소중한 것을) 잃은", "She was {bereft} of hope."],
+["billow", "/ˈbɪloʊ/", "v.", "부풀어 오르다", "Smoke {billowed} from the chimney."],
+["blight", "/blaɪt/", "n.", "병충해, 재앙", "A {blight} fell upon the crops."],
+["bower", "/ˈbaʊər/", "n.", "나무 그늘 쉼터", "They sat in a leafy {bower}."],
+["brooding", "/ˈbruːdɪŋ/", "adj.", "우울하게 생각에 잠긴", "He cast a {brooding} look."],
+["cadence", "/ˈkeɪdns/", "n.", "억양, 운율", "The poem has a gentle {cadence}."],
+["clamor", "/ˈklæmər/", "n.", "아우성", "A {clamor} rose from the crowd."],
+["cloister", "/ˈklɔɪstər/", "n.", "수도원, 회랑", "Monks walked in the {cloister}."],
+["cobweb", "/ˈkɑːbweb/", "n.", "거미줄", "{Cobwebs} hung from the beams."],
+["crepuscular", "/krɪˈpʌskjələr/", "adj.", "황혼의", "The {crepuscular} light softened the hills."],
+["dapple", "/ˈdæpl/", "v.", "얼룩무늬를 만들다", "Sunlight {dappled} the forest floor."],
+["dismal", "/ˈdɪzməl/", "adj.", "음울한", "The {dismal} weather lasted all week."],
+["dolorous", "/ˈdoʊlərəs/", "adj.", "슬픈", "A {dolorous} bell tolled."],
+["dusk", "/dʌsk/", "n.", "해질녘", "They walked home at {dusk}."],
+["ebb", "/eb/", "v.", "썰물이 되다, 쇠퇴하다", "His strength began to {ebb}."],
+["elegiac", "/ˌelɪˈdʒaɪək/", "adj.", "애가의, 애수 어린", "The film has an {elegiac} tone."],
+["enchant", "/ɪnˈtʃænt/", "v.", "매혹하다", "The tale {enchanted} the children."],
+["ethereal", "/ɪˈθɪriəl/", "adj.", "이 세상 것 같지 않은", "She had an {ethereal} beauty."],
+["exile", "/ˈeksaɪl/", "n.", "망명, 유배", "He lived in {exile}."],
+["fervor", "/ˈfɜːrvər/", "n.", "열렬함", "They prayed with {fervor}."],
+["fetter", "/ˈfetər/", "n.", "족쇄", "He broke free of his {fetters}."],
+["flicker", "/ˈflɪkər/", "v.", "깜박이다", "The candle {flickered}."],
+["forlorn", "/fɔːrˈlɔːrn/", "adj.", "쓸쓸한", "He stood {forlorn} at the gate."],
+["furtive", "/ˈfɜːrtɪv/", "adj.", "은밀한", "She gave a {furtive} glance."],
+["gallant", "/ˈɡælənt/", "adj.", "용감한, 정중한", "The {gallant} knight bowed."],
+["gaunt", "/ɡɔːnt/", "adj.", "수척한", "His {gaunt} face looked tired."],
+["glean", "/ɡliːn/", "v.", "조금씩 모으다", "She {gleaned} facts from letters."],
+["gloaming", "/ˈɡloʊmɪŋ/", "n.", "황혼", "They met in the {gloaming}."],
+["grapple", "/ˈɡræpl/", "v.", "씨름하다", "He {grappled} with doubt."],
+["grotesque", "/ɡroʊˈtesk/", "adj.", "기괴한", "The mask was {grotesque}."],
+["harbinger", "/ˈhɑːrbɪndʒər/", "n.", "전조", "Robins are a {harbinger} of spring."],
+["hearth", "/hɑːrθ/", "n.", "벽난로", "They gathered around the {hearth}."],
+["hovel", "/ˈhʌvl/", "n.", "오두막", "The family lived in a {hovel}."],
+["languid", "/ˈlæŋɡwɪd/", "adj.", "나른한", "She gave a {languid} wave."],
+["languor", "/ˈlæŋɡər/", "n.", "나른함", "A sweet {languor} filled the room."],
+["lissome", "/ˈlɪsəm/", "adj.", "나긋나긋한", "The dancer was {lissome}."],
+["loath", "/loʊθ/", "adj.", "꺼리는", "He was {loath} to leave."],
+["lurid", "/ˈlʊrɪd/", "adj.", "섬뜩한, 선정적인", "The tale was full of {lurid} details."],
+["lurk", "/lɜːrk/", "v.", "숨어 있다", "Danger {lurked} in the shadows."],
+["mellow", "/ˈmeloʊ/", "adj.", "부드러운, 원숙한", "The wine had a {mellow} taste."],
+["meander", "/miˈændər/", "v.", "구불구불 흐르다", "The river {meandered} through the valley."],
+["mirth", "/mɜːrθ/", "n.", "즐거움", "The room rang with {mirth}."],
+["morose", "/məˈroʊs/", "adj.", "시무룩한", "He sat {morose} in the corner."],
+["murky", "/ˈmɜːrki/", "adj.", "어둑한, 흐릿한", "The water was {murky}."],
+["mystic", "/ˈmɪstɪk/", "adj.", "신비로운", "She had a {mystic} vision."],
+["nocturnal", "/nɑːkˈtɜːrnl/", "adj.", "야행성의", "Owls are {nocturnal}."],
+["pallid", "/ˈpælɪd/", "adj.", "창백한", "He had a {pallid} face."],
+["pallor", "/ˈpælər/", "n.", "창백함", "A deathly {pallor} spread over her."],
+["pastoral", "/ˈpæstərəl/", "adj.", "전원의", "It is a {pastoral} poem."],
+["plaintive", "/ˈpleɪntɪv/", "adj.", "애처로운", "A {plaintive} cry echoed."],
+["quaint", "/kweɪnt/", "adj.", "예스럽고 정감 있는", "They visited a {quaint} village."],
+["radiant", "/ˈreɪdiənt/", "adj.", "빛나는", "She looked {radiant}."],
+["rapture", "/ˈræptʃər/", "n.", "황홀경", "He listened in {rapture}."],
+["reverie", "/ˈrevəri/", "n.", "몽상", "She was lost in {reverie}."],
+["ruddy", "/ˈrʌdi/", "adj.", "불그레한", "He had a {ruddy} complexion."],
+["sallow", "/ˈsæloʊ/", "adj.", "누르스름한", "His {sallow} skin looked sick."],
+["scarlet", "/ˈskɑːrlət/", "adj.", "주홍색의", "She wore a {scarlet} cloak."],
+["shroud", "/ʃraʊd/", "n.", "수의, 장막", "A {shroud} of mist covered the hills."],
+["spectral", "/ˈspektrəl/", "adj.", "유령 같은", "A {spectral} figure drifted by."],
+["squalor", "/ˈskwɑːlər/", "n.", "불결함, 빈곤", "They lived in {squalor}."],
+["stoop", "/stuːp/", "v.", "구부리다", "The old man {stooped} to listen."],
+["sublime", "/səˈblaɪm/", "adj.", "숭고한", "The view was {sublime}."],
+["sultry", "/ˈsʌltri/", "adj.", "무더운", "It was a {sultry} night."],
+["tarry", "/ˈtæri/", "v.", "머뭇거리다", "Do not {tarry} on the road."],
+["tattered", "/ˈtætərd/", "adj.", "누더기가 된", "He wore a {tattered} coat."],
+["tempest", "/ˈtempɪst/", "n.", "폭풍우", "A {tempest} shook the ship."],
+["throng", "/θrɔːŋ/", "n.", "군중", "A {throng} filled the square."],
+["tryst", "/trɪst/", "n.", "밀회", "They kept a secret {tryst}."],
+["twilight", "/ˈtwaɪlaɪt/", "n.", "황혼", "The {twilight} deepened."],
+["valiant", "/ˈvæliənt/", "adj.", "용맹한", "It was a {valiant} effort."],
+["veil", "/veɪl/", "n.", "베일", "A {veil} of mist hung over the lake."],
+["vesper", "/ˈvespər/", "n.", "저녁 기도", "The {vesper} bell rang."],
+["vestige", "/ˈvestɪdʒ/", "n.", "흔적", "A {vestige} of the wall remained."],
+["wail", "/weɪl/", "v.", "울부짖다", "The wind {wailed} in the chimney."],
+["wanderlust", "/ˈwɑːndərlʌst/", "n.", "방랑벽", "{Wanderlust} drove him abroad."],
+["woe", "/woʊ/", "n.", "비애", "A tale of {woe}."],
+["wrought", "/rɔːt/", "adj.", "세공된", "The gate was of {wrought} iron."],
+["zephyr", "/ˈzefər/", "n.", "산들바람", "A gentle {zephyr} stirred the curtains."],
+["azure", "/ˈæʒər/", "adj.", "하늘색의", "The {azure} sky was cloudless."],
+["bliss", "/blɪs/", "n.", "더없는 행복", "They lived in {bliss}."],
+["brook", "/brʊk/", "n.", "시내", "A {brook} ran through the glen."],
+["chasm", "/ˈkæzəm/", "n.", "깊은 틈, 큰 간격", "A {chasm} divided them."],
+["dawn", "/dɔːn/", "n.", "새벽", "They rose before {dawn}."],
+["dell", "/del/", "n.", "작은 골짜기", "Violets grew in the {dell}."],
+["doleful", "/ˈdoʊlfl/", "adj.", "구슬픈", "He gave a {doleful} look."],
+["enshroud", "/ɪnˈʃraʊd/", "v.", "뒤덮다", "Fog {enshrouded} the harbor."],
+["glade", "/ɡleɪd/", "n.", "숲속 빈터", "Deer grazed in the {glade}."],
+["gloom", "/ɡluːm/", "n.", "어둠, 우울", "He sat in the {gloom}."],
+["glimmer", "/ˈɡlɪmər/", "n.", "희미한 빛", "A {glimmer} of hope remained."],
+["hallowed", "/ˈhæloʊd/", "adj.", "신성시되는", "They walked on {hallowed} ground."],
+["heath", "/hiːθ/", "n.", "황야", "They crossed the windswept {heath}."],
+["melodious", "/məˈloʊdiəs/", "adj.", "선율이 아름다운", "A {melodious} voice rose."],
+["mournful", "/ˈmɔːrnfl/", "adj.", "애도하는", "A {mournful} tune played."],
+["rustic", "/ˈrʌstɪk/", "adj.", "소박한, 시골풍의", "They stayed in a {rustic} cabin."],
+["sepulchre", "/ˈseplkər/", "n.", "무덤", "The knight guarded the {sepulchre}."],
+["slumber", "/ˈslʌmbər/", "n.", "잠", "She fell into {slumber}."],
+["solace", "/ˈsɑːləs/", "n.", "위안", "He found {solace} in music."],
+["sorrow", "/ˈsɑːroʊ/", "n.", "슬픔", "Her {sorrow} was deep."],
+["vale", "/veɪl/", "n.", "골짜기", "A mist lay over the {vale}."],
+["vigil", "/ˈvɪdʒɪl/", "n.", "철야, 불침번", "They kept a {vigil}."]
+]));
+
 WORDS.push(...D('read',[
 ["abate","/əˈbeɪt/","v.","누그러지다, 가라앉다","The storm finally began to {abate}."],
 ["abhor","/æbˈhɔːr/","v.","혐오하다","She {abhors} any form of cheating."],
@@ -1137,6 +1555,285 @@ WORDS.push(...D('read',[
 ["whimsical","/ˈwɪmzɪkl/","adj.","기발한, 변덕스러운","It was a {whimsical} story."],
 ["yield","/jiːld/","v.","산출하다, 굴복하다","The study {yielded} surprising results."],
 ["zeal","/ziːl/","n.","열정","She taught with great {zeal}."]
+]));
+
+WORDS.push(...D('read',[
+["abrogate", "/ˈæbrəɡeɪt/", "v.", "폐지하다", "The new law will {abrogate} the earlier treaty."],
+["accede", "/ækˈsiːd/", "v.", "동의하다, 취임하다", "The board refused to {accede} to their demands."],
+["acerbic", "/əˈsɜːrbɪk/", "adj.", "신랄한", "Her {acerbic} wit spared no one."],
+["acrimony", "/ˈækrɪmoʊni/", "n.", "(말·태도의) 격렬한 악감정", "The divorce was marked by bitter {acrimony}."],
+["admonition", "/ˌædməˈnɪʃn/", "n.", "훈계, 경고", "He ignored the teacher's {admonition}."],
+["adulation", "/ˌædʒuˈleɪʃn/", "n.", "아첨, 과도한 찬사", "The singer basked in the {adulation} of fans."],
+["adumbrate", "/ˈædʌmbreɪt/", "v.", "윤곽을 보이다, 암시하다", "The speech {adumbrated} a major policy shift."],
+["aggrandize", "/əˈɡrændaɪz/", "v.", "(실제보다) 부풀려 높이다", "He used the post to {aggrandize} himself."],
+["alacrity", "/əˈlækrəti/", "n.", "민첩함, 기꺼이 하는 태도", "She accepted the offer with {alacrity}."],
+["ameliorate", "/əˈmiːliəreɪt/", "v.", "개선하다", "Measures were taken to {ameliorate} working conditions."],
+["anachronistic", "/əˌnækrəˈnɪstɪk/", "adj.", "시대착오적인", "The rule seems {anachronistic} in the digital age."],
+["antipathy", "/ænˈtɪpəθi/", "n.", "반감", "He felt a deep {antipathy} toward flattery."],
+["apocryphal", "/əˈpɑːkrɪfl/", "adj.", "출처가 불분명한, 사실이 아닐 법한", "The story of his early life is probably {apocryphal}."],
+["approbation", "/ˌæprəˈbeɪʃn/", "n.", "승인, 칭찬", "The plan won the {approbation} of the committee."],
+["arbitrary", "/ˈɑːrbətreri/", "adj.", "임의적인, 독단적인", "The choice of the date seemed {arbitrary}."],
+["archaic", "/ɑːrˈkeɪɪk/", "adj.", "고풍의, 구식의", "'Thou' is an {archaic} form of 'you'."],
+["ascetic", "/əˈsetɪk/", "adj.", "금욕적인", "He lived an {ascetic} life in the mountains."],
+["assuage", "/əˈsweɪdʒ/", "v.", "누그러뜨리다", "Nothing could {assuage} her grief."],
+["attenuate", "/əˈtenjueɪt/", "v.", "약화시키다", "Distance will {attenuate} the signal."],
+["audacity", "/ɔːˈdæsəti/", "n.", "뻔뻔함, 대담함", "He had the {audacity} to ask for more."],
+["axiomatic", "/ˌæksiəˈmætɪk/", "adj.", "자명한", "It is {axiomatic} that practice improves skill."],
+["bastion", "/ˈbæstʃən/", "n.", "보루", "The college remained a {bastion} of free thought."],
+["beguile", "/bɪˈɡaɪl/", "v.", "현혹하다, 즐겁게 하다", "The story {beguiled} the children."],
+["bellicose", "/ˈbelɪkoʊs/", "adj.", "호전적인", "The leader's {bellicose} rhetoric alarmed neighbors."],
+["blithe", "/blaɪð/", "adj.", "태평한, 무심한", "She showed a {blithe} disregard for the rules."],
+["bombastic", "/bɑːmˈbæstɪk/", "adj.", "과장된", "His {bombastic} speech impressed no one."],
+["cacophony", "/kəˈkɑːfəni/", "n.", "불협화음", "A {cacophony} of horns filled the street."],
+["capitulate", "/ˈkæpɪtʃuleɪt/", "v.", "굴복하다", "The company finally {capitulated} to the union."],
+["castigate", "/ˈkæstɪɡeɪt/", "v.", "호되게 비난하다", "The critics {castigated} the film."],
+["caustic", "/ˈkɔːstɪk/", "adj.", "부식성의, 신랄한", "He wrote a {caustic} review of the play."],
+["circumspect", "/ˈsɜːrkəmspekt/", "adj.", "신중한", "Be {circumspect} when sharing personal data."],
+["coalesce", "/ˌkoʊəˈles/", "v.", "합쳐지다", "The small groups {coalesced} into one movement."],
+["cogitate", "/ˈkɑːdʒɪteɪt/", "v.", "숙고하다", "He sat quietly to {cogitate} on the problem."],
+["commensurate", "/kəˈmenʃərət/", "adj.", "상응하는", "Pay will be {commensurate} with experience."],
+["compendium", "/kəmˈpendiəm/", "n.", "개요서, 요약집", "The book is a {compendium} of grammar rules."],
+["conciliatory", "/kənˈsɪliətɔːri/", "adj.", "달래는, 회유적인", "She made a {conciliatory} gesture."],
+["conflate", "/kənˈfleɪt/", "v.", "뒤섞어 하나로 만들다", "Do not {conflate} correlation with causation."],
+["connoisseur", "/ˌkɑːnəˈsɜːr/", "n.", "감정가", "He is a {connoisseur} of fine tea."],
+["contrite", "/kənˈtraɪt/", "adj.", "뉘우치는", "The boy looked {contrite} after the fight."],
+["conundrum", "/kəˈnʌndrəm/", "n.", "난제, 수수께끼", "The budget posed a real {conundrum}."],
+["copious", "/ˈkoʊpiəs/", "adj.", "풍부한, 방대한", "She took {copious} notes in class."],
+["corroborate", "/kəˈrɑːbəreɪt/", "v.", "확증하다", "New data {corroborate} the theory."],
+["credulous", "/ˈkredʒələs/", "adj.", "잘 믿는", "The {credulous} buyer believed every claim."],
+["culpable", "/ˈkʌlpəbl/", "adj.", "비난받아 마땅한", "The manager was {culpable} for the delay."],
+["cursory", "/ˈkɜːrsəri/", "adj.", "대충 하는", "He gave the report a {cursory} glance."],
+["dearth", "/dɜːrθ/", "n.", "부족", "There is a {dearth} of reliable data."],
+["debilitate", "/dɪˈbɪlɪteɪt/", "v.", "쇠약하게 하다", "The long illness {debilitated} him."],
+["decorum", "/dɪˈkɔːrəm/", "n.", "예의, 품위", "The meeting was conducted with {decorum}."],
+["deference", "/ˈdefərəns/", "n.", "경의, 존중", "She spoke with {deference} to her elders."],
+["degenerate", "/dɪˈdʒenəreɪt/", "v.", "퇴보하다", "The debate {degenerated} into an argument."],
+["denigrate", "/ˈdenɪɡreɪt/", "v.", "폄하하다", "Do not {denigrate} the efforts of others."],
+["deride", "/dɪˈraɪd/", "v.", "조롱하다", "Critics {derided} the proposal as naive."],
+["desultory", "/ˈdesəltɔːri/", "adj.", "산만한, 두서없는", "They held a {desultory} conversation."],
+["diatribe", "/ˈdaɪətraɪb/", "n.", "통렬한 비난", "He launched into a {diatribe} against the council."],
+["dichotomy", "/daɪˈkɑːtəmi/", "n.", "이분법, 양분", "There is a false {dichotomy} between work and play."],
+["diffident", "/ˈdɪfɪdənt/", "adj.", "자신 없는, 소심한", "He was {diffident} about speaking in public."],
+["disabuse", "/ˌdɪsəˈbjuːz/", "v.", "오해를 풀어 주다", "Let me {disabuse} you of that notion."],
+["discordant", "/dɪsˈkɔːrdnt/", "adj.", "조화되지 않는", "The report struck a {discordant} note."],
+["disingenuous", "/ˌdɪsɪnˈdʒenjuəs/", "adj.", "불성실한, 솔직하지 않은", "It is {disingenuous} to claim ignorance."],
+["disparage", "/dɪˈspærɪdʒ/", "v.", "깎아내리다", "He never {disparaged} his rivals."],
+["dissemble", "/dɪˈsembl/", "v.", "(감정을) 숨기다, 가장하다", "She could not {dissemble} her disappointment."],
+["dissipate", "/ˈdɪsɪpeɪt/", "v.", "흩어지다, 낭비하다", "The fog began to {dissipate}."],
+["dissonance", "/ˈdɪsənəns/", "n.", "불협화음, 부조화", "Cognitive {dissonance} causes discomfort."],
+["divest", "/daɪˈvest/", "v.", "(권리 등을) 박탈하다, 처분하다", "The firm decided to {divest} its holdings."],
+["docile", "/ˈdɑːsl/", "adj.", "유순한", "The horse was {docile} and easy to ride."],
+["dogged", "/ˈdɔːɡɪd/", "adj.", "끈질긴", "Her {dogged} efforts paid off."],
+["ebullient", "/ɪˈbʊliənt/", "adj.", "열정이 넘치는", "The coach was in an {ebullient} mood."],
+["efficacy", "/ˈefɪkəsi/", "n.", "효능", "Studies tested the {efficacy} of the method."],
+["effrontery", "/ɪˈfrʌntəri/", "n.", "뻔뻔함", "He had the {effrontery} to lie to her face."],
+["egregious", "/ɪˈɡriːdʒiəs/", "adj.", "지독한, 터무니없는", "It was an {egregious} error of judgment."],
+["emulate", "/ˈemjuleɪt/", "v.", "모방하여 따라잡다", "Students try to {emulate} their role models."],
+["enervate", "/ˈenərveɪt/", "v.", "기력을 빼앗다", "The heat {enervated} the travelers."],
+["ephemeral", "/ɪˈfemərəl/", "adj.", "덧없는", "Fame can be {ephemeral}."],
+["equivocal", "/ɪˈkwɪvəkl/", "adj.", "애매한, 모호한", "The results were {equivocal}."],
+["erudite", "/ˈerjudaɪt/", "adj.", "박식한", "The professor was an {erudite} scholar."],
+["eschew", "/ɪsˈtʃuː/", "v.", "피하다, 삼가다", "He chose to {eschew} luxury."],
+["exacerbate", "/ɪɡˈzæsərbeɪt/", "v.", "악화시키다", "Stress can {exacerbate} the problem."],
+["exculpate", "/ˈekskʌlpeɪt/", "v.", "무죄를 입증하다", "The evidence {exculpated} the accused."],
+["exemplary", "/ɪɡˈzempləri/", "adj.", "모범적인", "She received an award for {exemplary} service."],
+["exhort", "/ɪɡˈzɔːrt/", "v.", "간곡히 권하다", "The coach {exhorted} the team to try harder."],
+["exigent", "/ˈeksɪdʒənt/", "adj.", "긴급한, 까다로운", "The {exigent} situation demanded quick action."],
+["expedite", "/ˈekspədaɪt/", "v.", "신속히 처리하다", "We will {expedite} your request."],
+["expiate", "/ˈekspieɪt/", "v.", "속죄하다", "He tried to {expiate} his guilt."],
+["expound", "/ɪkˈspaʊnd/", "v.", "상세히 설명하다", "She {expounded} her theory at length."],
+["extraneous", "/ɪkˈstreɪniəs/", "adj.", "관련 없는", "Remove all {extraneous} details."],
+["facetious", "/fəˈsiːʃəs/", "adj.", "우스꽝스러운, 경솔한", "Stop making {facetious} remarks."],
+["fastidious", "/fæˈstɪdiəs/", "adj.", "까다로운", "He is {fastidious} about cleanliness."],
+["fecund", "/ˈfiːkənd/", "adj.", "다산의, 비옥한", "The {fecund} soil yields rich crops."],
+["fervent", "/ˈfɜːrvənt/", "adj.", "열렬한", "She is a {fervent} supporter of reform."],
+["fledgling", "/ˈfledʒlɪŋ/", "adj.", "신생의, 초보의", "The {fledgling} company needs funding."],
+["flout", "/flaʊt/", "v.", "(규칙을) 무시하다", "Drivers who {flout} the law will be fined."],
+["foment", "/foʊˈment/", "v.", "(불화 등을) 조장하다", "The article could {foment} unrest."],
+["forestall", "/fɔːrˈstɔːl/", "v.", "선수를 쳐서 막다", "They acted to {forestall} a crisis."],
+["fortuitous", "/fɔːrˈtuːɪtəs/", "adj.", "우연한, 뜻밖의 행운의", "Their meeting was {fortuitous}."],
+["fractious", "/ˈfrækʃəs/", "adj.", "걸핏하면 싸우는", "The {fractious} committee could not agree."],
+["garrulous", "/ˈɡærələs/", "adj.", "수다스러운", "The {garrulous} host talked all evening."],
+["germane", "/dʒɜːrˈmeɪn/", "adj.", "관련 있는", "That point is not {germane} to the debate."],
+["glib", "/ɡlɪb/", "adj.", "말만 번드르르한", "He gave a {glib} answer."],
+["grandiloquent", "/ɡrænˈdɪləkwənt/", "adj.", "과장된 말투의", "The {grandiloquent} speech bored the crowd."],
+["guile", "/ɡaɪl/", "n.", "교활함", "She won the deal through {guile}."],
+["hackneyed", "/ˈhæknid/", "adj.", "진부한", "The film relies on a {hackneyed} plot."],
+["harangue", "/həˈræŋ/", "v.", "장황하게 훈계하다", "He {harangued} the crowd for an hour."],
+["hegemony", "/hɪˈdʒeməni/", "n.", "패권", "The empire established {hegemony} over the region."],
+["heterogeneous", "/ˌhetərəˈdʒiːniəs/", "adj.", "이질적인", "The class is a {heterogeneous} group."],
+["homogeneous", "/ˌhoʊməˈdʒiːniəs/", "adj.", "동질적인", "The town was ethnically {homogeneous}."],
+["iconoclast", "/aɪˈkɑːnəklæst/", "n.", "인습 타파주의자", "The artist was an {iconoclast}."],
+["ignominious", "/ˌɪɡnəˈmɪniəs/", "adj.", "굴욕적인", "The team suffered an {ignominious} defeat."],
+["immutable", "/ɪˈmjuːtəbl/", "adj.", "불변의", "The laws of physics are {immutable}."],
+["impassive", "/ɪmˈpæsɪv/", "adj.", "무표정한", "He remained {impassive} during the trial."],
+["impecunious", "/ˌɪmpɪˈkjuːniəs/", "adj.", "돈 없는", "The {impecunious} student lived on bread."],
+["impervious", "/ɪmˈpɜːrviəs/", "adj.", "영향받지 않는, 불침투성의", "She was {impervious} to criticism."],
+["implacable", "/ɪmˈplækəbl/", "adj.", "달랠 수 없는", "He was an {implacable} enemy."],
+["imprudent", "/ɪmˈpruːdnt/", "adj.", "무분별한", "It would be {imprudent} to invest all your savings."],
+["impugn", "/ɪmˈpjuːn/", "v.", "이의를 제기하다", "They tried to {impugn} the witness's honesty."],
+["inchoate", "/ɪnˈkoʊət/", "adj.", "막 시작된, 형태가 갖춰지지 않은", "His ideas were still {inchoate}."],
+["incongruous", "/ɪnˈkɑːŋɡruəs/", "adj.", "어울리지 않는", "The modern tower looked {incongruous}."],
+["indefatigable", "/ˌɪndɪˈfætɪɡəbl/", "adj.", "지칠 줄 모르는", "She is an {indefatigable} worker."],
+["indelible", "/ɪnˈdeləbl/", "adj.", "지울 수 없는", "The trip left an {indelible} memory."],
+["indolent", "/ˈɪndələnt/", "adj.", "게으른", "The {indolent} clerk avoided work."],
+["ineffable", "/ɪnˈefəbl/", "adj.", "말로 표현할 수 없는", "They felt an {ineffable} joy."],
+["inexorable", "/ɪnˈeksərəbl/", "adj.", "멈출 수 없는", "The {inexorable} rise of costs continued."],
+["ingenuous", "/ɪnˈdʒenjuəs/", "adj.", "순진한", "Her {ingenuous} smile won them over."],
+["inimical", "/ɪˈnɪmɪkl/", "adj.", "해로운, 적대적인", "Such policies are {inimical} to growth."],
+["innocuous", "/ɪˈnɑːkjuəs/", "adj.", "무해한", "It seemed an {innocuous} remark."],
+["insidious", "/ɪnˈsɪdiəs/", "adj.", "서서히 퍼지는, 음흉한", "An {insidious} disease spreads silently."],
+["insipid", "/ɪnˈsɪpɪd/", "adj.", "맛없는, 재미없는", "The soup tasted {insipid}."],
+["insular", "/ˈɪnsələr/", "adj.", "편협한, 섬의", "They led an {insular} life."],
+["interlocutor", "/ˌɪntərˈlɑːkjətər/", "n.", "대화 상대", "She questioned her {interlocutor} politely."],
+["intransigent", "/ɪnˈtrænsɪdʒənt/", "adj.", "타협하지 않는", "The {intransigent} party blocked the deal."],
+["inveterate", "/ɪnˈvetərət/", "adj.", "뿌리 깊은, 상습적인", "He is an {inveterate} liar."],
+["irascible", "/ɪˈræsəbl/", "adj.", "화를 잘 내는", "The {irascible} boss shouted often."],
+["laconic", "/ləˈkɑːnɪk/", "adj.", "말수가 적은", "He gave a {laconic} reply."],
+["laud", "/lɔːd/", "v.", "칭송하다", "Critics {lauded} the novel."],
+["lethargy", "/ˈleθərdʒi/", "n.", "무기력", "A deep {lethargy} overcame him."],
+["loquacious", "/loʊˈkweɪʃəs/", "adj.", "말이 많은", "The {loquacious} guide never paused."],
+["lucid", "/ˈluːsɪd/", "adj.", "명쾌한, 정신이 맑은", "She gave a {lucid} explanation."],
+["malleable", "/ˈmæliəbl/", "adj.", "가단성의, 영향받기 쉬운", "Young minds are {malleable}."],
+["mendacious", "/menˈdeɪʃəs/", "adj.", "거짓된", "The report was {mendacious}."],
+["mercurial", "/mərˈkjʊriəl/", "adj.", "변덕스러운", "He has a {mercurial} temper."],
+["meticulous", "/məˈtɪkjələs/", "adj.", "꼼꼼한", "She is {meticulous} about details."],
+["misanthrope", "/ˈmɪsənθroʊp/", "n.", "사람을 싫어하는 사람", "The {misanthrope} avoided parties."],
+["mitigate", "/ˈmɪtɪɡeɪt/", "v.", "완화하다", "Trees {mitigate} the heat."],
+["mollify", "/ˈmɑːlɪfaɪ/", "v.", "누그러뜨리다", "He tried to {mollify} the angry customer."],
+["mundane", "/mʌnˈdeɪn/", "adj.", "평범한, 세속적인", "She wrote about {mundane} chores."],
+["munificent", "/mjuːˈnɪfɪsnt/", "adj.", "아낌없이 주는", "A {munificent} donor funded the library."],
+["nebulous", "/ˈnebjələs/", "adj.", "모호한", "The plan remained {nebulous}."],
+["nefarious", "/nɪˈferiəs/", "adj.", "사악한", "They uncovered a {nefarious} scheme."],
+["neologism", "/niˈɑːlədʒɪzəm/", "n.", "신조어", "'Selfie' began as a {neologism}."],
+["nonplussed", "/ˌnɑːnˈplʌst/", "adj.", "당황한", "He was {nonplussed} by the question."],
+["obdurate", "/ˈɑːbdjərət/", "adj.", "완고한", "The {obdurate} chief refused to listen."],
+["obfuscate", "/ˈɑːbfʌskeɪt/", "v.", "혼란스럽게 하다", "Jargon can {obfuscate} meaning."],
+["obsequious", "/əbˈsiːkwiəs/", "adj.", "아첨하는", "The {obsequious} waiter hovered nearby."],
+["obsolete", "/ˌɑːbsəˈliːt/", "adj.", "쓸모없어진", "The device became {obsolete}."],
+["obstreperous", "/əbˈstrepərəs/", "adj.", "소란스러운", "The {obstreperous} crowd was removed."],
+["obviate", "/ˈɑːbvieɪt/", "v.", "불필요하게 만들다", "Good planning will {obviate} delays."],
+["odious", "/ˈoʊdiəs/", "adj.", "혐오스러운", "He was guilty of an {odious} crime."],
+["opprobrium", "/əˈproʊbriəm/", "n.", "공개적 비난", "The decision drew public {opprobrium}."],
+["ostentatious", "/ˌɑːstenˈteɪʃəs/", "adj.", "과시하는", "The {ostentatious} mansion was gaudy."],
+["palliate", "/ˈpælieɪt/", "v.", "(증상을) 완화하다", "Drugs can {palliate} the pain."],
+["panacea", "/ˌpænəˈsiːə/", "n.", "만병통치약", "Technology is not a {panacea}."],
+["paragon", "/ˈpærəɡɑːn/", "n.", "귀감", "She was a {paragon} of virtue."],
+["parsimonious", "/ˌpɑːrsɪˈmoʊniəs/", "adj.", "인색한", "The {parsimonious} owner never tipped."],
+["paucity", "/ˈpɔːsəti/", "n.", "소량, 부족", "There is a {paucity} of evidence."],
+["pedantic", "/pɪˈdæntɪk/", "adj.", "학식을 뽐내는, 현학적인", "He is {pedantic} about grammar."],
+["penchant", "/ˈpentʃənt/", "n.", "강한 경향, 취향", "She has a {penchant} for mystery novels."],
+["penurious", "/pəˈnʊriəs/", "adj.", "궁핍한, 인색한", "They lived in {penurious} conditions."],
+["perfidy", "/ˈpɜːrfədi/", "n.", "배신", "The king never forgave their {perfidy}."],
+["perfunctory", "/pərˈfʌŋktəri/", "adj.", "형식적인", "He gave a {perfunctory} nod."],
+["pernicious", "/pərˈnɪʃəs/", "adj.", "치명적인, 해로운", "Gossip has a {pernicious} effect."],
+["perspicacious", "/ˌpɜːrspɪˈkeɪʃəs/", "adj.", "통찰력 있는", "The {perspicacious} editor spotted the flaw."],
+["pertinacious", "/ˌpɜːrtɪˈneɪʃəs/", "adj.", "집요한", "The {pertinacious} reporter kept asking."],
+["phlegmatic", "/fleɡˈmætɪk/", "adj.", "침착한, 무덤덤한", "He remained {phlegmatic} in a crisis."],
+["pithy", "/ˈpɪθi/", "adj.", "간결하고 힘 있는", "She gave a {pithy} summary."],
+["platitude", "/ˈplætɪtuːd/", "n.", "상투적인 말", "The speech was full of {platitudes}."],
+["plethora", "/ˈpleθərə/", "n.", "과다", "A {plethora} of choices confused him."],
+["polemic", "/pəˈlemɪk/", "n.", "논쟁(문)", "The book is a {polemic} against reform."],
+["precipitate", "/prɪˈsɪpɪteɪt/", "v.", "촉발하다", "The scandal {precipitated} his fall."],
+["presumptuous", "/prɪˈzʌmptʃuəs/", "adj.", "주제넘은", "It would be {presumptuous} to assume that."],
+["pretentious", "/prɪˈtenʃəs/", "adj.", "허세 부리는", "The menu was {pretentious}."],
+["probity", "/ˈproʊbəti/", "n.", "청렴", "He was known for his {probity}."],
+["proclivity", "/proʊˈklɪvəti/", "n.", "성향", "She has a {proclivity} for risk."],
+["prodigal", "/ˈprɑːdɪɡl/", "adj.", "낭비하는", "The {prodigal} heir spent everything."],
+["profligate", "/ˈprɑːflɪɡət/", "adj.", "방탕한, 낭비하는", "The {profligate} spending drained funds."],
+["propitious", "/prəˈpɪʃəs/", "adj.", "상서로운, 유리한", "It was a {propitious} time to launch."],
+["protean", "/ˈproʊtiən/", "adj.", "변화무쌍한", "She had a {protean} career."],
+["puerile", "/ˈpjʊrəl/", "adj.", "유치한", "His jokes were {puerile}."],
+["pugnacious", "/pʌɡˈneɪʃəs/", "adj.", "싸우기 좋아하는", "The {pugnacious} player was banned."],
+["punctilious", "/pʌŋkˈtɪliəs/", "adj.", "세세한 예의에 신경 쓰는", "He was {punctilious} about etiquette."],
+["pusillanimous", "/ˌpjuːsɪˈlænɪməs/", "adj.", "소심한, 겁 많은", "The {pusillanimous} leader avoided risk."],
+["quixotic", "/kwɪkˈsɑːtɪk/", "adj.", "비현실적으로 이상주의적인", "It was a {quixotic} plan."],
+["rancor", "/ˈræŋkər/", "n.", "깊은 원한", "He spoke without {rancor}."],
+["recalcitrant", "/rɪˈkælsɪtrənt/", "adj.", "고집 센, 반항하는", "The {recalcitrant} child refused to obey."],
+["recondite", "/ˈrekəndaɪt/", "adj.", "난해한", "The book covers {recondite} topics."],
+["redolent", "/ˈredələnt/", "adj.", "연상시키는, 향기로운", "The room was {redolent} of roses."],
+["refute", "/rɪˈfjuːt/", "v.", "반박하다", "The data {refute} his claim."],
+["remonstrate", "/rɪˈmɑːnstreɪt/", "v.", "항의하다", "She {remonstrated} with the manager."],
+["reprehensible", "/ˌreprɪˈhensəbl/", "adj.", "비난받을 만한", "The act was morally {reprehensible}."],
+["repudiate", "/rɪˈpjuːdieɪt/", "v.", "거부하다, 부인하다", "He {repudiated} the claim."],
+["rescind", "/rɪˈsɪnd/", "v.", "철회하다", "The school {rescinded} the rule."],
+["resilient", "/rɪˈzɪliənt/", "adj.", "회복력 있는", "Children are often {resilient}."],
+["reticence", "/ˈretɪsns/", "n.", "과묵함", "Her {reticence} puzzled them."],
+["rhetorical", "/rɪˈtɔːrɪkl/", "adj.", "수사적인", "It was a {rhetorical} question."],
+["sagacious", "/səˈɡeɪʃəs/", "adj.", "현명한", "The {sagacious} judge weighed each claim."],
+["salient", "/ˈseɪliənt/", "adj.", "두드러진", "Summarize the {salient} points."],
+["sanguine", "/ˈsæŋɡwɪn/", "adj.", "낙관적인", "She is {sanguine} about the future."],
+["sardonic", "/sɑːrˈdɑːnɪk/", "adj.", "냉소적인", "He gave a {sardonic} smile."],
+["scrutinize", "/ˈskruːtənaɪz/", "v.", "면밀히 조사하다", "Auditors {scrutinize} every record."],
+["sedulous", "/ˈsedʒələs/", "adj.", "부지런한", "The {sedulous} student reviewed daily."],
+["sententious", "/senˈtenʃəs/", "adj.", "훈계조의", "His {sententious} advice annoyed them."],
+["solicitous", "/səˈlɪsɪtəs/", "adj.", "배려하는", "The nurse was {solicitous} of her patients."],
+["somnolent", "/ˈsɑːmnələnt/", "adj.", "졸린", "The {somnolent} town slept at noon."],
+["specious", "/ˈspiːʃəs/", "adj.", "그럴듯하지만 틀린", "He made a {specious} argument."],
+["spurious", "/ˈspjʊriəs/", "adj.", "가짜의", "The claim was {spurious}."],
+["staunch", "/stɔːntʃ/", "adj.", "충직한", "She is a {staunch} defender of the plan."],
+["stoic", "/ˈstoʊɪk/", "adj.", "금욕적인, 참을성 있는", "He faced the pain with {stoic} calm."],
+["stolid", "/ˈstɑːlɪd/", "adj.", "둔감한, 무표정한", "He kept a {stolid} expression."],
+["subjugate", "/ˈsʌbdʒuɡeɪt/", "v.", "정복하다, 복종시키다", "The army sought to {subjugate} the region."],
+["supercilious", "/ˌsuːpərˈsɪliəs/", "adj.", "거만한", "She gave a {supercilious} smile."],
+["supplant", "/səˈplænt/", "v.", "대체하다", "Email has {supplanted} letters."],
+["surreptitious", "/ˌsɜːrəpˈtɪʃəs/", "adj.", "은밀한", "He cast a {surreptitious} glance."],
+["sycophant", "/ˈsɪkəfænt/", "n.", "아첨꾼", "The king was surrounded by {sycophants}."],
+["taciturn", "/ˈtæsɪtɜːrn/", "adj.", "말이 없는", "The {taciturn} farmer rarely spoke."],
+["tenacious", "/təˈneɪʃəs/", "adj.", "끈질긴", "She is {tenacious} in pursuing her goals."],
+["tenuous", "/ˈtenjuəs/", "adj.", "미약한, 근거가 박약한", "The link is {tenuous}."],
+["tirade", "/ˈtaɪreɪd/", "n.", "장황한 비난", "He broke into a {tirade}."],
+["torpid", "/ˈtɔːrpɪd/", "adj.", "활기 없는", "The {torpid} snake barely moved."],
+["tractable", "/ˈtræktəbl/", "adj.", "다루기 쉬운", "The problem proved {tractable}."],
+["transgress", "/trænsˈɡres/", "v.", "(규칙을) 어기다", "He {transgressed} the school's code."],
+["trenchant", "/ˈtrentʃənt/", "adj.", "날카로운", "She offered a {trenchant} critique."],
+["truculent", "/ˈtrʌkjələnt/", "adj.", "공격적인", "The {truculent} guest picked a fight."],
+["ubiquitous", "/juːˈbɪkwɪtəs/", "adj.", "어디에나 있는", "Smartphones are {ubiquitous}."],
+["unequivocal", "/ˌʌnɪˈkwɪvəkl/", "adj.", "명백한", "She gave an {unequivocal} answer."],
+["unwarranted", "/ʌnˈwɔːrəntɪd/", "adj.", "부당한", "The criticism was {unwarranted}."],
+["vacillate", "/ˈvæsəleɪt/", "v.", "우유부단하게 흔들리다", "He {vacillated} between two choices."],
+["venerable", "/ˈvenərəbl/", "adj.", "존경할 만한", "The {venerable} professor retired."],
+["veracity", "/vəˈræsəti/", "n.", "진실성", "They questioned the {veracity} of the report."],
+["verbose", "/vɜːrˈboʊs/", "adj.", "장황한", "The essay was {verbose}."],
+["vilify", "/ˈvɪlɪfaɪ/", "v.", "비방하다", "The press {vilified} him."],
+["vindictive", "/vɪnˈdɪktɪv/", "adj.", "보복심이 강한", "She was cruel and {vindictive}."],
+["virulent", "/ˈvɪrjələnt/", "adj.", "독한, 악의적인", "He launched a {virulent} attack."],
+["vitriolic", "/ˌvɪtriˈɑːlɪk/", "adj.", "독설적인", "The speech was {vitriolic}."],
+["vociferous", "/voʊˈsɪfərəs/", "adj.", "목소리 높여 주장하는", "They were {vociferous} critics."],
+["volition", "/voʊˈlɪʃn/", "n.", "의지", "She left of her own {volition}."],
+["voracious", "/vɔːˈreɪʃəs/", "adj.", "게걸스러운, 탐욕스러운", "He is a {voracious} reader."],
+["wane", "/weɪn/", "v.", "줄어들다", "Interest began to {wane}."],
+["winsome", "/ˈwɪnsəm/", "adj.", "매력적인", "She had a {winsome} smile."],
+["wistful", "/ˈwɪstfl/", "adj.", "애석해하는, 그리워하는", "He gave a {wistful} sigh."],
+["zealot", "/ˈzelət/", "n.", "광신자", "The {zealot} rejected all compromise."],
+["adjudicate", "/əˈdʒuːdɪkeɪt/", "v.", "판결하다", "A panel will {adjudicate} the dispute."],
+["anomalous", "/əˈnɑːmələs/", "adj.", "변칙적인", "The results were {anomalous}."],
+["cajole", "/kəˈdʒoʊl/", "v.", "감언이설로 설득하다", "She {cajoled} him into helping."],
+["cerebral", "/səˈriːbrəl/", "adj.", "지적인, 두뇌의", "It is a {cerebral} film."],
+["cohort", "/ˈkoʊhɔːrt/", "n.", "집단, 동기", "The study followed a {cohort} of students."],
+["conducive", "/kənˈduːsɪv/", "adj.", "도움이 되는", "Quiet is {conducive} to study."],
+["contentious", "/kənˈtenʃəs/", "adj.", "논쟁을 일으키는", "It is a {contentious} issue."],
+["convoluted", "/ˈkɑːnvəluːtɪd/", "adj.", "뒤얽힌", "The plot was {convoluted}."],
+["corollary", "/ˈkɔːrəleri/", "n.", "필연적 결과", "Higher costs are a {corollary} of growth."],
+["covert", "/ˈkoʊvɜːrt/", "adj.", "은밀한", "They ran a {covert} operation."],
+["defunct", "/dɪˈfʌŋkt/", "adj.", "더 이상 존재하지 않는", "The {defunct} firm left debts."],
+["demur", "/dɪˈmɜːr/", "v.", "이의를 제기하다", "She {demurred} at the suggestion."],
+["discrepancy", "/dɪˈskrepənsi/", "n.", "불일치", "There is a {discrepancy} in the figures."],
+["disseminate", "/dɪˈsemɪneɪt/", "v.", "퍼뜨리다", "They {disseminate} information online."],
+["edify", "/ˈedɪfaɪ/", "v.", "교화하다", "The talk was meant to {edify} the audience."],
+["empirical", "/ɪmˈpɪrɪkl/", "adj.", "경험적인", "They need {empirical} evidence."],
+["epitomize", "/ɪˈpɪtəmaɪz/", "v.", "전형이 되다", "She {epitomizes} dedication."],
+["exemplify", "/ɪɡˈzemplɪfaɪ/", "v.", "예증하다", "The story {exemplifies} courage."],
+["extant", "/ˈekstənt/", "adj.", "현존하는", "Few {extant} copies remain."],
+["gratuitous", "/ɡrəˈtuːɪtəs/", "adj.", "불필요한, 부당한", "The film has {gratuitous} violence."],
+["heuristic", "/hjuˈrɪstɪk/", "adj.", "발견적인", "She used a {heuristic} approach."],
+["inherent", "/ɪnˈhɪrənt/", "adj.", "내재된", "Risk is {inherent} in investing."],
+["juxtapose", "/ˈdʒʌkstəpoʊz/", "v.", "나란히 놓다", "The artist {juxtaposes} old and new."],
+["latent", "/ˈleɪtnt/", "adj.", "잠재된", "He had a {latent} talent."],
+["nuance", "/ˈnuːɑːns/", "n.", "미묘한 차이", "The translation lost the {nuance}."],
+["pragmatic", "/præɡˈmætɪk/", "adj.", "실용적인", "She took a {pragmatic} approach."],
+["tacit", "/ˈtæsɪt/", "adj.", "암묵적인", "They reached a {tacit} agreement."],
+["tenet", "/ˈtenɪt/", "n.", "신조, 교리", "Honesty is a core {tenet}."]
 ]));
 
 WORDS.push(...D('read',[
@@ -2580,6 +3277,12 @@ WORDS.forEach(w=>{if(DF[w.w])w.df=DF[w.w];});
 WORDS.forEach(w=>{if(DF[w.w])w.df=DF[w.w];});
 })();
 
+(function(){const DF={"allegory": "A story in which characters and events stand for {abstract} ideas or moral meanings.", "irony": "A contrast between what is said or expected and what actually {happens} or is meant.", "simile": "A figure of speech that {compares} two unlike things using the word like or as.", "foreshadowing": "A hint in a narrative about events that will {occur} later in the story.", "soliloquy": "A speech in which a character speaks their thoughts {aloud} while alone on stage.", "protagonist": "The central {character} of a story, around whom the main conflict revolves.", "antagonist": "A character or force that {opposes} the main character.", "satire": "A work that uses humor and exaggeration to {criticize} human folly or social problems.", "motif": "A recurring {element}, such as an image or idea, that develops a work's theme.", "allusion": "An indirect {reference} to a person, event or work outside the text.", "unreliable": "Describing a narrator whose account cannot be fully {trusted}.", "stanza": "A group of {lines} in a poem, forming a unit like a paragraph in prose.", "sonnet": "A fourteen-line poem with a fixed {rhyme} scheme, usually in iambic pentameter.", "alliteration": "The {repetition} of the same initial consonant sound in nearby words.", "onomatopoeia": "A word that {imitates} the sound it describes.", "paradox": "A statement that seems self-{contradictory} but may reveal a deeper truth.", "oxymoron": "A figure of speech that combines two {opposite} terms in one phrase.", "juxtaposition": "The placing of two contrasting elements side by side to highlight their {differences}.", "epiphany": "A sudden moment of {realization} or insight, often experienced by a character.", "imagery": "Descriptive language that appeals to the {senses} to create pictures in the reader's mind.", "symbolism": "The use of objects or images to represent {ideas} beyond their literal meaning.", "personification": "Giving human {qualities} to animals, objects or abstract ideas.", "hyperbole": "Deliberate and extreme {exaggeration} used for emphasis or effect.", "understatement": "A figure of speech that deliberately makes something seem {less} important than it is.", "pathos": "The quality in a work that arouses {pity} or sadness in the audience.", "catharsis": "The emotional {release} an audience feels, especially at the end of a tragedy.", "tragic flaw": "A defect in a hero's {character} that causes their downfall.", "hubris": "Excessive {pride} or self-confidence that leads to a character's ruin.", "denouement": "The final part of a plot in which the {outcome} is resolved after the climax.", "climax": "The point of greatest {tension} or turning point in a story.", "exposition": "The part of a narrative that {introduces} the background, setting and characters.", "flashback": "A scene that {interrupts} the main timeline to show an earlier event.", "setting": "The time and {place} in which a story occurs.", "theme": "The central {message} or underlying idea explored in a literary work.", "tone": "The author's {attitude} toward the subject or audience, conveyed through word choice.", "point of view": "The {perspective} from which a story is told, such as first or third person.", "stream of consciousness": "A narrative technique that records the continuous flow of a character's {thoughts}.", "epigraph": "A short quotation placed at the {beginning} of a book or chapter.", "prologue": "An introductory section that comes {before} the main story begins.", "epilogue": "A concluding section that comes {after} the main story ends.", "elegy": "A poem of serious {reflection}, typically mourning someone who has died.", "ode": "A lyric poem written in {praise} of a person, object or idea.", "ballad": "A narrative poem or song that tells a {story}, often in short stanzas.", "couplet": "Two successive lines of poetry that usually {rhyme} and have the same meter.", "blank verse": "Poetry written in regular iambic pentameter but with no {rhyme}.", "iambic pentameter": "A line of verse with five {feet}, each an unstressed syllable followed by a stressed one.", "meter": "The {pattern} of stressed and unstressed syllables in a line of poetry.", "rhyme scheme": "The {pattern} of rhyming sounds at the ends of lines, often marked with letters.", "enjambment": "The continuation of a sentence beyond the end of a poetic {line} without a pause.", "assonance": "The {repetition} of similar vowel sounds in nearby words.", "consonance": "The repetition of consonant sounds, especially at the {ends} of nearby words.", "romanticism": "A movement that emphasized {emotion}, imagination and nature over reason.", "modernism": "A movement that broke from {tradition} with experimental forms in the early twentieth century.", "realism": "A movement that portrays {everyday} life and society as they truly are.", "gothic": "A genre that blends horror, mystery and {decay} in dark, atmospheric settings.", "bildungsroman": "A novel that follows a young character's psychological and moral {growth} into adulthood.", "dystopia": "An imagined society marked by {oppression} and suffering, often as a warning.", "utopia": "An imagined {perfect} society in which everything is ideal.", "comic relief": "A humorous scene or character that {eases} tension in a serious work.", "foil": "A character who {contrasts} with another in order to highlight that character's traits.", "archetype": "A universal {pattern}, character type or symbol that recurs across literature.", "anachronism": "Something placed in the wrong {period} of history, such as a modern object in an old story.", "canon": "The body of works regarded as the most {important} or authoritative in a field."};
+WORDS.forEach(w=>{if(DF[w.w]&&!w.df)w.df=DF[w.w];});
+})();
+
+(function(){const E=new Set(["absolute", "abstract", "accessible", "accordingly", "accumulate", "accurate", "acquire", "adapt", "adhere", "adjacent", "adjust", "affirm", "agenda", "aggregate", "alert", "alien", "alliance", "allocate", "ally", "alter", "amateur", "ambitious", "analogous", "analogy", "anticipate", "appetite", "appreciate", "appropriate", "arena", "array", "articulate", "artificial", "ashamed", "assembly", "assert", "assess", "asset", "assign", "assume", "attain", "attentive", "attribute", "autonomy", "await", "awkward", "barely", "bargain", "barrier", "bias", "blessing", "blueprint", "boast", "bold", "breakthrough", "bribe", "burden", "campaign", "capacity", "casual", "cease", "chaos", "chaotic", "characteristic", "cherish", "chore", "circumstance", "civic", "clarify", "clash", "cling", "clumsy", "collaborate", "commence", "commit", "commodity", "compassion", "compatible", "compile", "complex", "compose", "comprehensive", "comprise", "compromise", "conceal", "concise", "concrete", "condemn", "conduct", "confrontation", "conquer", "consensus", "consequence", "consequently", "considerable", "constant", "constrain", "constraint", "consume", "consumption", "contemplate", "contemporary", "contradiction", "contrary", "controversy", "convention", "convey", "cope", "corridor", "counterpart", "crisis", "criterion", "crossroads", "crucial", "curriculum", "debris", "decay", "decline", "deem", "deficit", "delegate", "demolish", "demonstrate", "dense", "despair", "destiny", "detour", "devote", "devotion", "diagnose", "diagnosis", "dilemma", "disgrace", "dismiss", "dispose", "dispute", "distract", "diverse", "domain", "domestic", "dominate", "drain", "dreadful", "drought", "dwell", "dwelling", "eager", "ecosystem", "elegant", "eligible", "eliminate", "elite", "embrace", "emission", "emphasize", "enact", "enclose", "encompass", "encounter", "endure", "engage", "enhance", "enormous", "enrich", "ensure", "enterprise", "entity", "epidemic", "equip", "era", "erosion", "erupt", "essence", "essential", "estimate", "eternal", "ethical", "ethics", "evaluate", "evident", "evolve", "exaggerate", "exceed", "exceptional", "excessive", "exclude", "exclusive", "exhaust", "exhibit", "exotic", "expedition", "expertise", "expose", "exposure", "extend", "faint", "fatal", "fatigue", "feat", "fertile", "fierce", "flaw", "flexible", "foe", "fraction", "fragile", "fragment", "framework", "fraud", "frequent", "friction", "frontier", "fulfill", "furthermore", "gadget", "generate", "genre", "genuine", "gesture", "gigantic", "glimpse", "glossary", "gradual", "grave", "guarantee", "guideline", "habitat", "halt", "hardly", "harsh", "hasten", "haunt", "hazard", "heed", "hence", "heritage", "hesitant", "hierarchy", "humble", "hurdle", "hypothesis", "identical", "ideology", "idle", "ignorant", "illuminate", "illusion", "illustrate", "imitate", "immense", "implement", "impress", "impulse", "incentive", "incorporate", "incredible", "inequality", "infer", "inflation", "ingredient", "inhabit", "inhabitant", "inheritance", "initiate", "inject", "injustice", "innovation", "inquire", "insert", "insight", "inspire", "install", "instinct", "institution", "integrate", "integrity", "intense", "interpret", "interrupt", "interval", "intervene", "intimate", "invade", "isolate", "justify", "keen", "landmark", "launch", "legacy", "legislation", "lessen", "loyal", "maintain", "mandatory", "margin", "massive", "mature", "medium", "mentor", "merely", "merge", "merit", "methodology", "migrate", "milestone", "minimize", "minority", "miserable", "misery", "moderate", "modify", "monitor", "monopoly", "monotonous", "moral", "moreover", "motive", "mourn", "mutual", "myth", "naive", "nasty", "neglect", "negotiate", "nevertheless", "noble", "nonetheless", "notably", "notion", "nourish", "numerous", "nurture", "obedient", "objective", "obligation", "obstacle", "obtain", "occupy", "offspring", "omit", "opponent", "optimal", "outbreak", "outlook", "outstanding", "overcome", "overlook", "penalty", "perceive", "perception", "permanent", "perspective", "persuade", "phenomenal", "phenomenon", "pledge", "plunge", "portion", "pose", "postpone", "precede", "predecessor", "prejudice", "preserve", "primarily", "primitive", "priority", "privilege", "procedure", "prohibit", "promising", "promote", "prompt", "proportion", "prospect", "prosper", "provision", "pursuit", "ratio", "rational", "readily", "rebellion", "recession", "reckless", "recruit", "refrain", "refuge", "regain", "regime", "reinforce", "reject", "relieve", "relish", "remarkable", "remote", "render", "renowned", "reside", "resolve", "restless", "restore", "restrain", "restrict", "resume", "retain", "reveal", "revenue", "rigid", "ritual", "rotate", "sacred", "scandal", "scatter", "scenario", "segment", "seize", "sensible", "sentiment", "severe", "shallow", "shatter", "shed", "shortage", "simultaneously", "skeleton", "slender", "slogan", "soar", "sober", "solely", "solitary", "spare", "spectrum", "sphere", "spur", "stabilize", "steep", "stereotype", "stern", "stimulate", "stimulus", "strain", "strive", "stubborn", "stumble", "sturdy", "submit", "substantial", "substitute", "sufficient", "superb", "superior", "supreme", "suspend", "sustain", "swift", "symptom", "synthesis", "tackle", "tactic", "temporary", "tenant", "tender", "terrain", "texture", "thorough", "thoroughly", "threshold", "token", "tolerate", "trait", "transform", "transition", "trauma", "tribute", "trigger", "triumph", "trivial", "ultimate", "urge", "urgent", "utility", "utilize", "vague", "valid", "validate", "vanish", "vast", "vendor", "venture", "verbal", "verdict", "verify", "vessel", "veteran", "vicinity", "virtual", "virtue", "vivid", "vocation", "vow", "voyage", "wage", "wander", "warfare", "warrant", "weave", "welfare", "wholesome", "wicked", "withdraw", "withhold", "workforce", "worship", "yearn"]);WORDS.forEach(w=>{if(w.cat==='read'&&E.has(w.w))w.easy=1;});})();
+
 (function(){const seen={};for(let i=0;i<WORDS.length;i++){const k=WORDS[i].w;if(seen[k]){WORDS.splice(i,1);i--;}else seen[k]=1;}})();
 const BY={}; WORDS.forEach(w=>BY[w.w]=w);
 const INT=[1,3,7,14,30]; // review spacing in days
@@ -2600,7 +3303,7 @@ const stageOf=n=>{let k=0;STAGE_AT.forEach((t,i)=>{if(n>=t)k=i;});return k+1;};
 /* ===================== STATE ===================== */
 const KEY='imyong-danyeo-whale-v1';
 let canStore=true;
-const fresh=()=>({v:1,set:{daily:20,cats:CAT_DEFAULT.slice(),known:Object.keys(CATS),types:['mc','short','cloze','def','dcloze'],typesV2:true,exam:''},
+const fresh=()=>({v:1,set:{daily:20,cats:CAT_DEFAULT.slice(),known:Object.keys(CATS),types:['mc','short','cloze','def','dcloze'],typesV2:true,exam:'',hard:true,enMajor:true},
   learned:{},wrong:{},master:{},marks:{},att:{},today:null,custom:[],stats:{answered:0,correct:0}});
 function load(){
   try{const r=localStorage.getItem(KEY); if(r){return migrate(JSON.parse(r));}}
@@ -2617,6 +3320,7 @@ function migrate(p){
   if(!o.set.typesV2){['def','dcloze'].forEach(t=>{if(!o.set.types.includes(t))o.set.types.push(t);});o.set.typesV2=true;}
   if(o.today&&o.today.ids&&o.today.ids.some(id=>!BY[id]))o.today=null;
   if(!Array.isArray(o.custom))o.custom=[];
+  if(p.set&&p.set.hard===undefined&&o.today&&!o.today.studyDone)o.today=null;
   return o;
 }
 let S=load();
@@ -2810,6 +3514,8 @@ const dfPlain=w=>(w.df||'').replace(/\{(.+?)\}/g,'$1');
 const dfBlank=w=>(w.df||'').replace(/\{(.+?)\}/,'<span class="blank"></span>').replace(/\{(.+?)\}/g,'$1');
 const dfTarget=w=>((w.df||'').match(/\{(.+?)\}/)||[0,''])[1];
 const targetOf=(it,w)=>it.type==='cloze'?exTarget(w):it.type==='dcloze'?dfTarget(w):w.w;
+const MAJOR={ling:1,edu:1,lit:1};
+const isM=w=>!!(MAJOR[w.cat]&&w.df&&S.set.enMajor!==false);
 const exTarget=w=>((w.ex||'').match(/\{(.+?)\}/)||[0,w.w])[1];
 const norm=s=>s.toLowerCase().replace(/[-–]/g,' ').replace(/[^a-z' ]/g,'').replace(/\s+/g,' ').trim();
 const A=()=>{const d=TODAY();return S.att[d]||(S.att[d]={words:0,qtot:0,qok:0,rev:0});};
@@ -2823,7 +3529,7 @@ function speak(w){try{const u=new SpeechSynthesisUtterance(w);u.lang='en-US';u.r
 function makePlan(batch){
   const n=S.set.daily, cats=S.set.cats.length?S.set.cats:Object.keys(CATS);
   const hash=t=>{let h=7;for(let i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))>>>0;return h;};
-  const groups=cats.map(c=>{const g=WORDS.filter(w=>w.cat===c&&!S.learned[w.w]);return c==='read'?g.sort((a,b)=>hash(a.w)-hash(b.w)):g;});
+  const groups=cats.map(c=>{const g=WORDS.filter(w=>w.cat===c&&!S.learned[w.w]&&!(c==='read'&&S.set.hard!==false&&w.easy));return c==='read'?g.sort((a,b)=>hash(a.w)-hash(b.w)):g;});
   const ids=[];let i=0;
   const wt=cats.map(c=>c==='read'?2:1);
   while(ids.length<n&&groups.some((g,gi)=>g.length>i*wt[gi])){groups.forEach((g,gi)=>{for(let j=0;j<wt[gi];j++){const w=g[i*wt[gi]+j];if(w&&ids.length<n)ids.push(w.w);}});i++;}
@@ -2891,28 +3597,28 @@ function home(){
     <div class="small" style="margin-top:6px"><b>${title}</b> · Lv.${lv}</div>
     <div class="bar" style="margin-top:6px;height:8px"><i style="width:${pct}%"></i></div>
     <div class="small muted" style="margin-top:4px">${nextAt?`다음 성장(${LV[stg]})까지 ${toNext}개`:'최고 단계예요. 계속 쑥쑥 자라는 중!'}</div></div></div>
-  <div class="card col"><div class="row between"><h2 class="disp" style="font-size:22px">오늘의 단어 ${n}개</h2><span class="chip">${t.batch>1?t.batch+'회차':'기본'}</span></div>${today}</div>
-  <div class="card col"><div class="row between"><h2 class="disp" style="font-size:22px">오늘의 복습</h2><span class="chip ${due?'coral':'ok'}">${due?due+'개 대기':'없음'}</span></div>
+  <div class="card col"><div class="row between"><h2 class="disp" style="font-size:19px">오늘의 단어 ${n}개</h2><span class="chip">${t.batch>1?t.batch+'회차':'기본'}</span></div>${today}</div>
+  <div class="card col"><div class="row between"><h2 class="disp" style="font-size:19px">오늘의 복습</h2><span class="chip ${due?'coral':'ok'}">${due?due+'개 대기':'없음'}</span></div>
     <p class="muted small">${due?'오답노트에서 복습 시기가 된 단어예요. 맞히면 간격이 늘어나요 (1→3→7→14→30일).':'오늘 복습할 단어가 없어요. 오늘 퀴즈에서 틀린 단어는 내일부터 복습 대상이 돼요.'}</p>
     ${due?'<button class="btn primary block" data-a="start-review">복습 퀴즈 시작</button>':''}</div>
-  <div class="card col"><h2 class="disp" style="font-size:22px">최근 7일</h2><div class="strip">${strip}</div>
+  <div class="card col"><h2 class="disp" style="font-size:19px">최근 7일</h2><div class="strip">${strip}</div>
     <div class="pbar"><div class="row between small"><span>전체 진도</span><b>${lc} / ${WORDS.length}</b></div><div class="bar"><i style="width:${Math.round(lc/WORDS.length*100)}%"></i></div></div></div>
   <p class="muted small" style="text-align:center;padding:0 12px">${MSG[Math.floor((Date.now()/864e5))%MSG.length]}</p>`;
 }
 
 function cardBody(w,hide,rev){
   const veil=hide&&!rev?' veil':'';
-  return `<div class="wcard card">
+  return `<div class="wcard card${hide&&!rev?' hold':''}"><div class="wfit">
    <div class="row between"><span class="chip">${CATS[w.cat]}${w.pos?' · '+w.pos:''}</span>
     <div class="row"><button class="icon-btn star ${S.marks[w.w]?'on':''}" data-a="bm" data-w="${w.w}" aria-label="북마크">${S.marks[w.w]?'★':'☆'}</button></div></div>
    <div><div class="word">${w.w}</div>
     <div class="row" style="margin-top:6px"><span class="ipa">${w.ipa}</span><button class="icon-btn" style="width:38px;height:38px;font-size:16px" data-a="speak" data-w="${w.w}" aria-label="발음 듣기">🔊</button></div></div>
-   <div class="grow col" ${hide&&!rev?'data-a="reveal"':''}>
+   <div class="grow col">
     <div class="mean${veil}">${w.ko}</div>
     ${w.df?`<div class="df${veil}">${dfHtml(w)}</div>`:''}
     ${w.ex?`<div class="ex${veil}">${exHtml(w)}</div>`:''}
-    ${hide&&!rev?'<div class="tap-hint">탭해서 뜻·정의·예문 보기</div>':''}
-   </div></div>`;
+    ${hide&&!rev?'<div class="tap-hint">화면을 누르고 있으면 보여요</div>':''}
+   </div></div></div>`;
 }
 
 function study(){
@@ -2922,9 +3628,9 @@ function study(){
   <div class="top"><button class="icon-btn" data-a="leave-study" aria-label="나가기">‹</button>
    <div class="bar"><i style="width:${Math.round((ST.idx+1)/n*100)}%"></i></div><div class="count">${ST.idx+1} / ${n}</div></div>
   ${cardBody(w,ST.hide,ST.rev)}
+  <div class="row act"><button class="btn bad grow" data-a="fuzzy">헷갈려요 ★</button><button class="btn primary grow" data-a="next-card">${last?(ST.src==='today'?'학습 완료':'마치기'):'알겠어요'}</button></div>
   <div class="row"><button class="btn grow" data-a="toggle-hide">${ST.hide?'뜻 보이기 모드':'뜻 가리기 모드'}</button>
    ${ST.idx>0?'<button class="btn" data-a="prev-card">이전</button>':''}</div>
-  <div class="row"><button class="btn bad grow" data-a="fuzzy">헷갈려요 ★</button><button class="btn primary grow" data-a="next-card">${last?(ST.src==='today'?'학습 완료':'마치기'):'알겠어요'}</button></div>
   <div class="kbd">좌우로 밀어서 넘기기 · 키보드 ← → Space · S 발음 · B 북마크</div>`;
 }
 
@@ -2933,7 +3639,7 @@ function qsetup(){
   const titles={daily:'오늘의 퀴즈',review:'복습 퀴즈',practice:'연습 퀴즈',retry:'틀린 문제 다시 풀기'};
   const T=[['mc','객관식','뜻 ↔ 단어 4지선다'],['short','단답형','뜻을 보고 영단어 쓰기'],['cloze','예문 빈칸 채우기','예문의 빈칸에 알맞은 형태 쓰기'],['def','정의 → 용어 쓰기','정의를 보고 용어 쓰기 (영어학·교육 용어)'],['dcloze','정의 빈칸 채우기','정의 속 핵심어 채우기 (영어학·교육 용어)']];
   return `
-  <div class="top"><button class="icon-btn" data-a="back-home" aria-label="뒤로">‹</button><h1 class="disp" style="font-size:24px">${titles[PEND.mode]}</h1></div>
+  <div class="top"><button class="icon-btn" data-a="back-home" aria-label="뒤로">‹</button><h1 class="disp" style="font-size:26px">${titles[PEND.mode]}</h1></div>
   <div class="card col"><div class="big">${n}문제</div><p class="muted small">문제 유형을 고르세요. 여러 개를 고르면 단어마다 섞어서 출제돼요.</p>
    ${T.map(t=>`<button class="opt ${ty.includes(t[0])?'right':''}" data-a="toggle-type" data-t="${t[0]}" aria-pressed="${ty.includes(t[0])}"><b>${ty.includes(t[0])?'✓':''}</b><span><b style="all:unset;font-weight:700">${t[1]}</b><br><span class="muted small">${t[2]}</span></span></button>`).join('')}
   </div>
@@ -2943,7 +3649,16 @@ function qsetup(){
 function buildQ(id,types){
   const w=BY[id];
   const okT=types.filter(x=>x==='mc'||x==='short'||(x==='cloze'&&/\{.+?\}/.test(w.ex||''))||((x==='def'||x==='dcloze')&&w.df));
-  const t=pick(okT.length?okT:['mc']);
+  let t=pick(okT.length?okT:['mc']);
+  if(isM(w)){
+    if(t==='short')t='def';
+    if(t==='mc'){
+      const dir=Math.random()<.5?'d2t':'t2d';
+      let pool=shuffle(WORDS.filter(x=>x.w!==w.w&&x.cat===w.cat&&x.df));
+      const opts=shuffle([w].concat(pool.slice(0,3)));
+      return {id,type:'mc',dir,opts:opts.map(o=>o.w)};
+    }
+  }
   if(t==='mc'){
     const dir=Math.random()<.5?'en2ko':'ko2en';
     let pool=shuffle(WORDS.filter(x=>x.w!==w.w&&x.ko!==w.ko));
@@ -2961,7 +3676,17 @@ function quiz(){
    <div class="bar"><i style="width:${Math.round((Q.idx+(ans?1:0))/n*100)}%"></i></div><div class="count">${Q.idx+1} / ${n}</div></div>`;
   let body='';
   if(it.type==='mc'){
+    const en=it.dir==='d2t'||it.dir==='t2d';
     const ko=it.dir==='en2ko';
+    if(en){
+      const d2t=it.dir==='d2t';
+      body=`<div class="qprompt">${d2t?'Choose the term that matches the definition':'Choose the definition that matches the term'}</div>
+       <div class="qmain ${d2t?'sent':''}">${d2t?dfPlain(w):`${w.w}<div class="ipa" style="font-size:16px;font-weight:400">${w.ipa} · ${w.pos}</div>`}</div>
+       <div class="opts">${it.opts.map((o,i)=>{
+         const ow=BY[o];let c='';
+         if(ans){if(o===w.w)c='right';else if(L.given===o)c='wrong';}
+         return `<button class="opt ${c}" data-a="opt" data-o="${o}" ${ans?'disabled':''}><b>${i+1}</b><span style="${d2t?'font-family:var(--font-latin);font-weight:700':'font-size:15px;text-align:left'}">${d2t?ow.w:dfPlain(ow)}</span></button>`;}).join('')}</div>`;
+    }else
     body=`<div class="qprompt">${ko?'알맞은 뜻을 고르세요':'알맞은 단어를 고르세요'}</div>
      <div class="qmain ${ko?'':'ko'}">${ko?`${w.w}<div class="ipa" style="font-size:16px;font-weight:400">${w.ipa} · ${w.pos}</div>`:`${w.ko}<div class="muted small" style="font-weight:400">${w.pos}</div>`}</div>
      <div class="opts">${it.opts.map((o,i)=>{
@@ -2972,7 +3697,7 @@ function quiz(){
     const target=targetOf(it,w);
     const cls=ans?(L.ok?'right':'wrong'):'';
     const prompts={cloze:'빈칸에 알맞은 형태로 쓰세요',short:'뜻에 맞는 영단어를 쓰세요',def:'다음 정의에 해당하는 용어를 쓰세요',dcloze:'정의의 빈칸에 알맞은 핵심어를 쓰세요'};
-    const main={cloze:`<div class="qmain sent">${exBlank(w)}</div><div class="chip" style="align-self:flex-start">${w.pos} · ${w.ko}</div>`,
+    const main={cloze:`<div class="qmain sent">${exBlank(w)}</div><div class="chip" style="align-self:flex-start;white-space:normal">${isM(w)?w.pos+' · '+dfPlain(w):w.pos+' · '+w.ko}</div>`,
       short:`<div class="qmain ko">${w.ko}<div class="muted small" style="font-weight:400">${w.pos}</div></div>`,
       def:`<div class="qmain sent">${dfPlain(w)}</div>`,
       dcloze:`<div class="chip" style="align-self:flex-start">용어 · ${w.w}</div><div class="qmain sent">${dfBlank(w)}</div>`}[it.type];
@@ -2985,8 +3710,9 @@ function quiz(){
   if(ans){
     const ok=L.ok;
     fb=`<div class="fb ${ok?'ok':'bad'}"><div class="v">${ok?'정답입니다':'오답이에요'}${!ok&&it.type!=='mc'?` · 정답: ${targetOf(it,w)}`:''}</div>
-      <div><b style="font-family:var(--font-latin);font-size:18px">${w.w}</b> <span class="ipa" style="font-size:15px">${w.ipa}</span> <button class="icon-btn" style="width:34px;height:34px;font-size:14px;display:inline-grid;vertical-align:middle" data-a="speak" data-w="${w.w}" aria-label="발음 듣기">🔊</button></div>
-      <div><b>${w.pos}</b> ${w.ko}</div>${w.df?`<div class="df">${dfHtml(w)}</div>`:''}${w.ex?`<div class="ex">${exHtml(w)}</div>`:''}
+      ${L.note?`<div class="warn ${ok?'':'bad'}">${ok?'⚠':'✎'} ${L.note}${L.given?` <span class="muted">(입력: ${L.given.replace(/</g,'&lt;')})</span>`:''}</div>`:''}
+      <div><b style="font-family:var(--font-latin);font-size:16px">${w.w}</b> <span class="ipa" style="font-size:15px">${w.ipa}</span> <button class="icon-btn" style="width:34px;height:34px;font-size:14px;display:inline-grid;vertical-align:middle" data-a="speak" data-w="${w.w}" aria-label="발음 듣기">🔊</button></div>
+      <div class="mean2"><b>${w.pos}</b> ${w.ko}</div>${w.df?`<div class="df">${dfHtml(w)}</div>`:''}${w.ex?`<div class="ex">${exHtml(w)}</div>`:''}
       ${!ok&&Q.mode==='daily'?'<div class="small muted">오답노트에 저장했어요. 내일 다시 복습해요.</div>':''}
       ${!ok&&Q.mode==='review'?'<div class="small muted">복습 간격이 1일로 돌아가요.</div>':''}
       ${ok&&Q.mode==='review'?'<div class="small muted">다음 단계로 올라갔어요.</div>':''}</div>
@@ -3032,7 +3758,7 @@ function review(){
   const ids=rv==='wrong'?wr:mk;
   return `
   <div class="head"><h1>복습</h1></div>
-  <div class="card col"><div class="row between"><h2 class="disp" style="font-size:22px">오늘 복습할 단어</h2><span class="chip ${due.length?'coral':'ok'}">${due.length}개</span></div>
+  <div class="card col"><div class="row between"><h2 class="disp" style="font-size:19px">오늘 복습할 단어</h2><span class="chip ${due.length?'coral':'ok'}">${due.length}개</span></div>
    <p class="muted small">복습 간격은 1일 → 3일 → 7일 → 14일 → 30일. 맞히면 다음 단계로, 틀리면 처음으로 돌아가요. 5단계를 통과하면 졸업합니다.</p>
    <div class="row"><button class="btn primary grow" data-a="start-review" ${due.length?'':'disabled'}>퀴즈로 복습</button><button class="btn grow" data-a="review-cards" ${due.length?'':'disabled'}>카드로 복습</button></div></div>
   <div class="seg" role="tablist"><button class="${rv==='wrong'?'on':''}" data-a="rv" data-v="wrong">오답노트 ${wr.length}</button><button class="${rv==='mark'?'on':''}" data-a="rv" data-v="mark">북마크 ${mk.length}</button></div>
@@ -3102,7 +3828,7 @@ function stats(){
   const cs=S.stats.cat||{};
   const accRows=Object.keys(CATS).filter(c=>cs[c]&&cs[c].a>=5).map(c=>({c,a:cs[c].a,p:Math.round(cs[c].c/cs[c].a*100)})).sort((x,y)=>x.p-y.p);
   const worst=Object.keys(S.wrong).filter(k=>BY[k]).sort((a,b)=>S.wrong[b].miss-S.wrong[a].miss).slice(0,5);
-  const weak=`<div class="card col"><h2 class="disp" style="font-size:22px">약점 분석</h2>
+  const weak=`<div class="card col"><h2 class="disp" style="font-size:19px">약점 분석</h2>
    ${accRows.length?accRows.map((r,i)=>`<div class="pbar"><div class="row between small"><span>${CATS[r.c]}${i===0&&accRows.length>1?' · 가장 약해요':''}</span><b>${r.p}% <span class="muted">(${r.a}문제)</span></b></div><div class="bar ${r.p>=80?'ok':''}"><i style="width:${r.p}%"></i></div></div>`).join(''):'<p class="muted small">분야별로 5문제 이상 풀면 정답률이 나와요.</p>'}
    ${worst.length?`<div class="lbl" style="margin-top:6px">자주 틀리는 단어</div>${worst.map(id=>`<div class="wk"><b>${id}</b><span class="muted">${BY[id].ko} · ${S.wrong[id].miss}회</span></div>`).join('')}`:''}</div>`;
   return `
@@ -3115,18 +3841,18 @@ function stats(){
    <div class="stat"><div class="muted small">총 출석일</div><div class="n">${keys.length}일</div></div>
    <div class="stat"><div class="muted small">오답 졸업</div><div class="n">${Object.keys(S.master).length}개</div></div>
   </div>
-  <div class="card col"><div class="row between"><button class="icon-btn" data-a="cal-prev" aria-label="이전 달">‹</button><h2 class="disp" style="font-size:22px">${calY}년 ${calM+1}월</h2><button class="icon-btn" data-a="cal-next" aria-label="다음 달">›</button></div>
+  <div class="card col"><div class="row between"><button class="icon-btn" data-a="cal-prev" aria-label="이전 달">‹</button><h2 class="disp" style="font-size:19px">${calY}년 ${calM+1}월</h2><button class="icon-btn" data-a="cal-next" aria-label="다음 달">›</button></div>
    <div class="cal">${'일월화수목금토'.split('').map(x=>`<div class="h">${x}</div>`).join('')}${cells}</div>
    <div class="row small muted"><span class="chip">학습</span><span class="chip" style="background:var(--sea);color:#fff">학습+퀴즈</span></div>${sel}</div>
-  <div class="card col"><h2 class="disp" style="font-size:22px">분야별 진도</h2>${catBars}</div>
+  <div class="card col"><h2 class="disp" style="font-size:19px">분야별 진도</h2>${catBars}</div>
   ${weak}
-  <div class="card col"><h2 class="disp" style="font-size:22px">배지</h2><div class="badges">${badges().map(b=>`<div class="badge ${b[2]?'on':''}"><div class="m">${b[1]}</div>${b[0]}</div>`).join('')}</div></div>`;
+  <div class="card col"><h2 class="disp" style="font-size:19px">배지</h2><div class="badges">${badges().map(b=>`<div class="badge ${b[2]?'on':''}"><div class="m">${b[1]}</div>${b[0]}</div>`).join('')}</div></div>`;
 }
 
 function settings(){
   const s=S.set,types=[['mc','객관식'],['short','단답형'],['cloze','예문 빈칸'],['def','정의→용어'],['dcloze','정의 빈칸']];
   return `
-  <div class="top"><button class="icon-btn" data-a="back-home" aria-label="뒤로">‹</button><h1 class="disp" style="font-size:24px">설정</h1></div>
+  <div class="top"><button class="icon-btn" data-a="back-home" aria-label="뒤로">‹</button><h1 class="disp" style="font-size:26px">설정</h1></div>
   <div class="card col"><label class="lbl">하루 학습 단어 수</label>
    <div class="stepper"><button class="icon-btn" data-a="daily" data-n="-5" aria-label="5개 줄이기">−</button><div class="v">${s.daily}</div><button class="icon-btn" data-a="daily" data-n="5" aria-label="5개 늘리기">+</button><span class="muted">개 / 일</span></div>
    <div class="toggle">${[10,20,30,50,100,200].map(n=>`<button class="${s.daily===n?'on':''}" data-a="daily-set" data-n="${n}">${n}</button>`).join('')}</div>
@@ -3134,6 +3860,10 @@ function settings(){
   <div class="card col"><label class="lbl">학습 분야</label>
    <div class="toggle">${Object.keys(CATS).filter(c=>WORDS.some(w=>w.cat===c)).map(c=>`<button class="${s.cats.includes(c)?'on':''}" data-a="toggle-cat" data-c="${c}" aria-pressed="${s.cats.includes(c)}">${CATS[c]}</button>`).join('')}</div></div>
   ${syncCard()}
+  <div class="card col"><label class="lbl">난이도·출제 방식</label>
+   <div class="toggle"><button class="${s.hard!==false?'on':''}" data-a="hard-toggle" aria-pressed="${s.hard!==false}">고난도 모드: 쉬운 독해 단어 빼기</button>
+   <button class="${s.enMajor!==false?'on':''}" data-a="enmajor-toggle" aria-pressed="${s.enMajor!==false}">전공 용어는 영어 정의로 출제</button></div>
+   <p class="muted small">고난도 모드를 켜면 오늘 학습에서 쉬운 독해 단어가 빠져요. 이미 외운 단어에는 영향이 없어요. 전공 용어(영어학·영어교육론·영미문학)는 시험처럼 한국어 없이 영어 정의로 문제가 나와요.</p></div>
   <div class="card col"><label class="lbl">발음</label>
    <div class="toggle"><button class="${s.auto?'on':''}" data-a="auto-toggle" aria-pressed="${!!s.auto}">카드가 나오면 자동으로 읽어주기</button></div></div>
   <div class="card col"><label class="lbl">기본 퀴즈 유형</label>
@@ -3163,6 +3893,8 @@ function render(){
     nav.innerHTML='<div class="in">'+[['home','홈'],['review','복습'],['dict','단어장'],['stats','기록']].map(t=>`<button class="${view===t[0]?'on':''}" data-a="nav" data-v="${t[0]}" ${view===t[0]?'aria-current="page"':''}><svg viewBox="0 0 24 24">${I[t[0]]}</svg>${t[1]}${t[0]==='review'&&due?`<span class="pill">${due}</span>`:''}</button>`).join('')+'</div>';
   }
   if(view==='study'&&S.set.auto&&ST.autoIdx!==ST.idx+':'+ST.src){ST.autoIdx=ST.idx+':'+ST.src;setTimeout(()=>speak(ST.ids[ST.idx]),150);}
+  if(view==='study')fitCard();
+  fitView();
   if(view==='quiz'){
     if(Q.answered){const e=document.getElementById('nextq');if(e){e.scrollIntoView({block:'nearest'});}}
     else{const i=document.getElementById('ans');if(i)setTimeout(()=>i.focus({preventScroll:true}),30);}
@@ -3189,8 +3921,8 @@ function applyEffect(id,ok){
     else S.wrong[id]={box:0,due:addDays(td,1),miss:o.miss+1};
   }
 }
-function answer(ok,given){
-  Q.answered=true;Q.last={ok,given};Q.res.push({id:Q.items[Q.idx].id,ok});
+function answer(ok,given,note){
+  Q.answered=true;Q.last={ok,given,note};Q.res.push({id:Q.items[Q.idx].id,ok});
   S.stats.answered++;if(ok)S.stats.correct++;
   {const c=BY[Q.items[Q.idx].id].cat;const cs=S.stats.cat||(S.stats.cat={});const o=cs[c]||(cs[c]={a:0,c:0});o.a++;if(ok)o.c++;}
   const a=A();a.qtot++;if(ok)a.qok++;
@@ -3202,11 +3934,80 @@ function finishQuiz(){
   if(Q.mode==='review')A().rev++;
   save();go('result');
 }
+/* ---- lenient grading ---- */
+const compact=t=>norm(t).replace(/[ ']/g,'');
+const toks=t=>norm(t).replace(/'s\b/g,'').replace(/'/g,'').split(' ').filter(Boolean);
+const sameT=(a,b)=>a===b||a===b+'s'||a===b+'es'||b===a+'s'||b===a+'es';
+const KB=(()=>{const rows=['qwertyuiop','asdfghjkl','zxcvbnm'],off=[0,.25,.75],m={};rows.forEach((r,y)=>[...r].forEach((c,x)=>{m[c]=[x+off[y],y];}));return m;})();
+const isV=c=>'aeiou'.includes(c);
+const adjK=(a,b)=>{const p=KB[a],q=KB[b];return !!p&&!!q&&a!==b&&Math.abs(p[0]-q[0])<=1.01&&Math.abs(p[1]-q[1])<=1;};
+/* typed (v) vs target (t), both compact. slip = phone typing slip, near = looks like a real spelling error */
+function typoKind(v,t){
+  if(v===t)return null;
+  const lv=v.length,lt=t.length;
+  if(lv===lt){
+    const d=[];for(let i=0;i<lv;i++)if(v[i]!==t[i])d.push(i);
+    if(d.length===1){const a=v[d[0]],b=t[d[0]];
+      if(adjK(a,b)&&!(isV(a)&&isV(b)))return {slip:true,kind:`${a}↔${b} 옆 키`};
+      return {near:true};}
+    if(d.length===2&&d[1]===d[0]+1&&v[d[0]]===t[d[1]]&&v[d[1]]===t[d[0]]){
+      if(isV(v[d[0]])&&isV(v[d[1]]))return {near:true};
+      return {slip:true,kind:'두 글자 순서 바뀜'};}
+    return null;
+  }
+  if(lv===lt+1){
+    let near=false;
+    for(let i=0;i<lv;i++){if(v.slice(0,i)+v.slice(i+1)!==t)continue;
+      const c=v[i],p=v[i-1],n=v[i+1];
+      if(c===p||c===n)return {slip:true,kind:'같은 글자 두 번 눌림'};
+      if(!isV(c)&&((p&&adjK(c,p))||(n&&adjK(c,n))))return {slip:true,kind:'옆 키가 같이 눌림'};
+      near=true;}
+    return near?{near:true}:null;
+  }
+  if(lv===lt-1){
+    let near=false;
+    for(let i=0;i<lt;i++){if(t.slice(0,i)+t.slice(i+1)!==v)continue;
+      const c=t[i];
+      if(c===t[i-1]||c===t[i+1]){near=true;continue;}
+      if(!isV(c))return {slip:true,kind:'글자 하나 빠짐'};
+      near=true;}
+    return near?{near:true}:null;
+  }
+  return null;
+}
+let CMP=null;
+function typoCheck(cv,ct,target){
+  if(ct.length<5)return {ok:false};
+  const k=typoKind(cv,ct);
+  if(!k)return {ok:false};
+  if(!CMP)CMP=new Set(WORDS.map(x=>compact(x.w)));
+  if(CMP.has(cv))return {ok:false};
+  if(k.slip)return {ok:true,note:`오타로 봤어요(${k.kind}) · 정확한 표기는 ${target}`};
+  return {ok:false,note:`한 글자 차이지만 오타가 아니라 철자 오류로 봤어요 · 정확한 표기는 ${target}`};
+}
+function grade(it,w,v){
+  const target=targetOf(it,w);
+  if(norm(v)===norm(target))return {ok:true};
+  const cv=compact(v),ct=compact(target);
+  if(!cv)return {ok:false};
+  if(cv===ct)return {ok:true,note:`정확한 표기는 ${target}`};
+  if(!MAJOR[w.cat])return typoCheck(cv,ct,target);
+  // major terms: accept extra words around the term (e.g. "task-based approach") and plurals
+  const tv=toks(v),tt=toks(target);
+  if(tt.length&&tv.length>tt.length&&tv.length-tt.length<=2){
+    for(let i=0;i+tt.length<=tv.length;i++){
+      if(tt.every((t,j)=>sameT(tv[i+j],t)))return {ok:true,note:`정확한 용어는 ${target}`};
+    }
+  }
+  if(tv.length===tt.length&&tt.every((t,j)=>sameT(tv[j],t)))return {ok:true,note:`정확한 표기는 ${target}`};
+  return typoCheck(cv,ct,target);
+}
 function checkInput(){
   const it=Q.items[Q.idx],w=BY[it.id],v=document.getElementById('ans').value;
   if(!norm(v)){toast('답을 입력해 주세요');return;}
   const target=targetOf(it,w);
-  answer(norm(v)===norm(target),v.trim());
+  const g=grade(it,w,v);
+  answer(g.ok,v.trim(),g.note);
 }
 
 const H={
@@ -3235,6 +4036,8 @@ const H={
  'fb-up':()=>fbAuth('up'),
  'fb-logout':async()=>{try{await FB.lib.auth.signOut(FB.auth);toast('로그아웃했어요');}catch(e){}},
  'sync-now':async()=>{if(!SYNC.on){toast('동기화를 쓸 수 없는 상태예요');return;}toast('동기화 중…');try{const ch=await syncPull();await syncPush();SYNC.last=Date.now();if(ch)ensureToday();render();toast(ch?'다른 기기의 기록을 불러왔어요':'동기화 완료');}catch(e){SYNC.status='err';render();toast('동기화에 실패했어요');}},
+ 'hard-toggle':()=>{S.set.hard=S.set.hard===false;replan();save();render();},
+ 'enmajor-toggle':()=>{S.set.enMajor=S.set.enMajor===false;save();render();},
  'auto-toggle':()=>{S.set.auto=!S.set.auto;save();render();},
  speak:d=>speak(d.w),
  reveal:()=>{ST.rev=true;render();},
@@ -3300,8 +4103,57 @@ document.addEventListener('keydown',e=>{
   else if(e.target.id==='ans'){e.preventDefault();checkInput();}
 });
 
+/* ---- keep the study card a fixed size: shrink the text inside instead ---- */
+function fitCard(){
+  const c=document.querySelector('#app .wcard'),f=c&&c.querySelector('.wfit');
+  if(!f)return;
+  f.style.zoom='';
+  const cs=getComputedStyle(c),avail=c.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom);
+  let z=1,g=0;
+  while(z>0.45&&f.getBoundingClientRect().height>avail+0.5&&g++<40){z=+(z-.025).toFixed(3);f.style.zoom=z;}
+}
+/* ---- fit to screen (no scroll) ---- */
+let MAXH=0,FITZ={view:null,z:1};
+function fitView(){
+  const app=document.getElementById('app');
+  const on=['study','quiz','qsetup'].includes(view);
+  app.classList.toggle('fit',on);app.classList.toggle('holdmode',view==='study'&&!!ST.hide);app.style.zoom='';
+  if(!on){FITZ={view:null,z:1};return;}
+  if(FITZ.view!==view)FITZ={view,z:1};
+  MAXH=Math.max(MAXH,window.innerHeight);
+  const H=MAXH;let z=FITZ.z;
+  if(z<1)app.style.zoom=z;
+  let guard=0;
+  while(z>0.5&&app.getBoundingClientRect().height>H+1&&guard++<30){z=Math.max(.5,+(z-.03).toFixed(2));app.style.zoom=z;}
+  FITZ.z=z;
+}
+window.addEventListener('resize',()=>{if(window.innerHeight<MAXH*0.7)return;MAXH=window.innerHeight;FITZ.z=1;fitView();});
+window.addEventListener('orientationchange',()=>{MAXH=0;FITZ.z=1;setTimeout(fitView,200);});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{FITZ.z=1;fitView();});
+
+/* ---- press-and-hold to peek at hidden meaning ---- */
+let HOLDING=false;
+function holdOn(e){
+  if(view!=='study'||!ST.hide||ST.rev)return;
+  if(e.target.closest&&e.target.closest('button,input,textarea,a'))return;
+  HOLDING=true;document.querySelectorAll('#app .veil').forEach(x=>x.classList.add('unveil'));
+  const h=document.querySelector('#app .tap-hint');if(h)h.style.visibility='hidden';
+}
+function holdOff(){
+  if(!HOLDING)return;HOLDING=false;
+  document.querySelectorAll('#app .veil').forEach(x=>x.classList.remove('unveil'));
+  const h=document.querySelector('#app .tap-hint');if(h)h.style.visibility='';
+}
+document.addEventListener('touchstart',holdOn,{passive:true});
+document.addEventListener('mousedown',holdOn);
+document.addEventListener('touchend',e=>{if(!e.touches||e.touches.length===0)holdOff();},{passive:true});
+document.addEventListener('touchcancel',e=>{if(!e.touches||e.touches.length===0)holdOff();},{passive:true});
+document.addEventListener('mouseup',holdOff);
+window.addEventListener('blur',holdOff);
+document.addEventListener('contextmenu',e=>{if(view==='study'&&ST.hide)e.preventDefault();});
+
 ensureToday();render();syncInit();
-if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)){navigator.serviceWorker.register('sw.js').catch(()=>{});}
 </script>
+<script>if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});</script>
 </body>
 </html>
