@@ -1,6 +1,6 @@
 {
- "name": "임용 단어코끼리",
- "short_name": "단어코끼리",
+ "name": "단끼리",
+ "short_name": "단끼리",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",

@@ -1,4 +1,4 @@
-# 임용 단어코끼리 — 내 주소로 올리기 (GitHub Pages) + 폰·컴퓨터 동기화 (Firebase)
+# 단끼리 — 내 주소로 올리기 (GitHub Pages) + 폰·컴퓨터 동기화 (Firebase)
 
 ## A. GitHub Pages로 올리기 (5분)
 1. github.com 로그인 → 오른쪽 위 `+` → **New repository**
